@@ -36,8 +36,9 @@ public class DefaultBehavior : MonoBehaviour {
 
 
 	void OnMouseDown () {
-		//Debug.Log (this.transform.position);
-		int i=Vector3ToInt(this.transform.position);
+		Debug.Log (this.transform.localPosition);
+		int i=Vector3ToInt(this.transform.localPosition);
+
 
 		if(CheckInIndex(minesIndex,i)){
 
