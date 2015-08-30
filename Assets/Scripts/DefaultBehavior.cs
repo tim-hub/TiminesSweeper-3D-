@@ -42,6 +42,24 @@ public class DefaultBehavior : MonoBehaviour {
 
 	}
 
+    void OnMouseOver(){
+        Debug.Log("Mouse Over");
+        if(Input.GetMouseButtonDown(1)){
+            Debug.Log("right click 1");
+            this.GetComponent<Renderer>().material.mainTexture=flag;
+            
+            rightClickAlready=true;
+        }
+        
+        if(rightClickAlready&&Input.GetMouseButtonDown(1)){
+            Debug.Log("right click 2");
+            this.GetComponent<Renderer>().material.mainTexture=defaultTexture;
+            
+           // rightClickAlready=true;
+        }
+        
+    } 
+        
 
 
 	void OnMouseDown () {
@@ -89,7 +107,7 @@ public class DefaultBehavior : MonoBehaviour {
             this.GetComponent<Renderer>().material.mainTexture=null;
           
 
-
+            //this.transform.localScale=new Vector3(0.5f,0.5f,0.5f);
             Destroy(this.gameObject,0.8f);
             
 		}
@@ -99,24 +117,6 @@ public class DefaultBehavior : MonoBehaviour {
 		
 	}
 
-
-	void OnMouseOver(){
-        if(Input.GetMouseButtonDown(1)){
-            this.GetComponent<Renderer>().material.mainTexture=flag;
-
-            rightClickAlready=true;
-		}
-
-        if(Input.GetMouseButtonDown(1)){
-            this.GetComponent<Renderer>().material.mainTexture=defaultTexture;
-
-            rightClickAlready=true;
-        }
-
-
-
-
-	}
 	#endregion
 
 	#region UserMethods

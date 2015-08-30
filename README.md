@@ -1,4 +1,5 @@
-## Tim's Mines Sweeper (3D)
+## TiminesSweeper(3D)
+Tim's Mines Sweeper (3D)
 
 ###About
 
