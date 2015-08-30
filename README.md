@@ -2,6 +2,9 @@
 
 ###About
 
+
+### How To Play
+
 ### Features be wanted
 1. add flag texture and when right click show the flag
 1. rotate more smoothly
@@ -18,11 +21,17 @@
 11. share to friends (by email fb or others)
 
 
+### Bugs
+1. when rotate use right button, when touch cube, flag will show
+
+
 
 ###Have Cool Ideas || Find Bugs?
 Contact me, we achieved / fix it together.
 
 ###Licanse
+flag.png is from http://www.ooopic.com/ and it is free to use.
 
-Copy Left.
+
+Othrers are all Copy Left.
 Under GNU License

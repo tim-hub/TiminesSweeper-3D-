@@ -10,11 +10,12 @@ public class DefaultBehavior : MonoBehaviour {
 	public Texture num4;
 	public Texture num5;
 	public Texture num6;
+    public Texture flag;
 
 
 	GameObject newParentObject;
 	
-	string flag;
+	
 
 	int numOfCubes;
 	int rows;
@@ -77,13 +78,21 @@ public class DefaultBehavior : MonoBehaviour {
 			
 			
 		}else{
-			this.GetComponent<Renderer>().material.color=Color.white;
+            this.GetComponent<Renderer>().material.mainTexture=null;
 
 		}
 
 		
 	}
 
+
+	void OnMouseOver(){
+		if(Input.GetMouseButtonDown(1)){
+            this.GetComponent<Renderer>().material.mainTexture=flag;
+            Debug.Log(flag);
+		}
+
+	}
 	#endregion
 
 	#region UserMethods
