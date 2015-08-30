@@ -4,6 +4,7 @@ using System.Collections;
 public class DefaultBehavior : MonoBehaviour {
 
 	public GameObject mine;
+    public GameObject explosionAnim;
     public Texture defaultTexture;
 	public Texture num1;
 	public Texture num2;
@@ -24,13 +25,14 @@ public class DefaultBehavior : MonoBehaviour {
 	int[] numCubesIndex;
 
     bool flagShowAlready;
+
    
 
 
 	#region UnityMethods
 	void Start(){
         flagShowAlready=false;
-
+    
 
 		newParentObject=GameObject.FindGameObjectWithTag("Parent");
 
@@ -41,6 +43,11 @@ public class DefaultBehavior : MonoBehaviour {
 		numCubesIndex=newParentObject.GetComponent<gameController>().numCubesIndex;
 
 	}
+
+    void Update(){
+
+    
+    }
 
     void OnMouseOver(){
         Debug.Log("Mouse Over");
@@ -74,6 +81,11 @@ public class DefaultBehavior : MonoBehaviour {
     			GameObject go=Instantiate(mine,this.transform.position,new Quaternion(0,0,0,0)) as GameObject;
     			Destroy(this.gameObject);
     			go.transform.parent=newParentObject.transform;
+                if(Time.time>2f){
+
+                    Instantiate(explosionAnim,this.transform.position,new Quaternion(0,0,0,0));
+                    Destroy(go);
+                }
     			
     		}else if(GetNumOfNumCubes(i)!=0){
     			int numCount=GetNumOfNumCubes(i);
@@ -174,7 +186,14 @@ public class DefaultBehavior : MonoBehaviour {
 	}
 
 
+    void Explosion(){
+        //audio
 
+
+        //anim
+
+    
+    }
 
 
 
