@@ -23,14 +23,14 @@ public class DefaultBehavior : MonoBehaviour {
 	int[] minesIndex;
 	int[] numCubesIndex;
 
-    bool rightClickAlready;
-    bool leftClickAlready;
+    bool flagShowAlready;
+   
 
 
 	#region UnityMethods
 	void Start(){
-        rightClickAlready=false;
-        leftClickAlready=false;
+        flagShowAlready=false;
+
 
 		newParentObject=GameObject.FindGameObjectWithTag("Parent");
 
@@ -46,21 +46,20 @@ public class DefaultBehavior : MonoBehaviour {
         Debug.Log("Mouse Over");
         if(Input.GetMouseButtonDown(1)){
 
-            if(!rightClickAlready){
+            if(!flagShowAlready){
                 Debug.Log("right click 1");
                 this.GetComponent<Renderer>().material.mainTexture=flag;
             
-                rightClickAlready=true;
+                flagShowAlready=true;
             }else{
                 Debug.Log("right click twice");
                 this.GetComponent<Renderer>().material.mainTexture=defaultTexture;
-                rightClickAlready=false;
+
+                flagShowAlready=false;
             }
 
         }
-        
-
-        
+ 
     } 
         
 
@@ -69,53 +68,53 @@ public class DefaultBehavior : MonoBehaviour {
 		Debug.Log (this.transform.localPosition);
 		int i=Vector3ToInt(this.transform.localPosition);
 
+        if(!flagShowAlready){
+    		if(CheckInIndex(minesIndex,i)){
 
-		if(CheckInIndex(minesIndex,i)){
+    			GameObject go=Instantiate(mine,this.transform.position,new Quaternion(0,0,0,0)) as GameObject;
+    			Destroy(this.gameObject);
+    			go.transform.parent=newParentObject.transform;
+    			
+    		}else if(GetNumOfNumCubes(i)!=0){
+    			int numCount=GetNumOfNumCubes(i);
 
-			GameObject go=Instantiate(mine,this.transform.position,new Quaternion(0,0,0,0)) as GameObject;
-			Destroy(this.gameObject);
-			go.transform.parent=newParentObject.transform;
-			
-		}else if(GetNumOfNumCubes(i)!=0){
-			int numCount=GetNumOfNumCubes(i);
+    			Debug.Log(numCount);
+    			//set texture
+    			switch (numCount)
+    			{
+    			case 1:
+    				this.GetComponent<Renderer>().material.mainTexture=num1;
+    				break;
+    			case 2:
+    				this.GetComponent<Renderer>().material.mainTexture=num2;
+    				break;
+    			case 3:
+    				this.GetComponent<Renderer>().material.mainTexture=num3;
+    				break;
+    			case 4:
+    				this.GetComponent<Renderer>().material.mainTexture=num4;
+    				break;
+    			case 5:
+    				this.GetComponent<Renderer>().material.mainTexture=num5;
+    				break;
+    			case 6:
+    				this.GetComponent<Renderer>().material.mainTexture=num6;
+    				break;
+    			default:
+    				break;
+    			}
+    			
+    			
+    		}else{
+                this.GetComponent<Renderer>().material.mainTexture=null;
+              
 
-			Debug.Log(numCount);
-			//set texture
-			switch (numCount)
-			{
-			case 1:
-				this.GetComponent<Renderer>().material.mainTexture=num1;
-				break;
-			case 2:
-				this.GetComponent<Renderer>().material.mainTexture=num2;
-				break;
-			case 3:
-				this.GetComponent<Renderer>().material.mainTexture=num3;
-				break;
-			case 4:
-				this.GetComponent<Renderer>().material.mainTexture=num4;
-				break;
-			case 5:
-				this.GetComponent<Renderer>().material.mainTexture=num5;
-				break;
-			case 6:
-				this.GetComponent<Renderer>().material.mainTexture=num6;
-				break;
-			default:
-				break;
-			}
-			
-			
-		}else{
-            this.GetComponent<Renderer>().material.mainTexture=null;
-          
+                //this.transform.localScale=new Vector3(0.5f,0.5f,0.5f);
+                Destroy(this.gameObject,0.8f);
+                
+    		}
+        }
 
-            //this.transform.localScale=new Vector3(0.5f,0.5f,0.5f);
-            Destroy(this.gameObject,0.8f);
-            
-		}
-
-        leftClickAlready=true;
 
 		
 	}

@@ -2,12 +2,12 @@
 Tim's Mines Sweeper (3D)
 
 ###About
-
+For now this is a mines sweeper 3d's core(2015/08/30), 
 
 ### How To Play
 
 ### Features be wanted
-1. --add flag texture and when right click show the flag--
+1. ~~add flag texture and when right click show the flag~~
 1. rotate more smoothly
 2. space sube more white and can be destroyed by itself when click
 2. mines position randomly
@@ -18,21 +18,24 @@ Tim's Mines Sweeper (3D)
 7. add audio, like explosion, click
 8. UI(start,restart, show help, control tips)
 9. scores (count time) and can be saved
+10. Count flag, all, nums cubes by GUI
 10. config the number of cubes and mines
 11. share to friends (by email fb or others)
 
+~~means the feature has already be achived~~
+
 
 ### Bugs
-1. when rotate use right button, when touch cube, flag will show
+1. ~~when rotate use right button, when touch cube, flag will show~~
 
-
+~~means the bugs has already be fixed~~
 
 ###Have Cool Ideas || Find Bugs?
 Contact me, we achieved / fix it together.
 
 ###Licanse
-flag.png is from http://www.ooopic.com/ and it is free to use.
+flag.png is from [ooopic](http://www.ooopic.com/) and it is free to use.
+mine module is from unity3d assest, it is free.
 
-
-Othrers are all Copy Left.
+1~6 texture and Core codes are all Copy Left.
 Under GNU License
