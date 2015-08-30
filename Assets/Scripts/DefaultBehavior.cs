@@ -4,6 +4,7 @@ using System.Collections;
 public class DefaultBehavior : MonoBehaviour {
 
 	public GameObject mine;
+    public Texture defaultTexture;
 	public Texture num1;
 	public Texture num2;
 	public Texture num3;
@@ -22,8 +23,15 @@ public class DefaultBehavior : MonoBehaviour {
 	int[] minesIndex;
 	int[] numCubesIndex;
 
+    bool rightClickAlready;
+    bool leftClickAlready;
+
+
 	#region UnityMethods
 	void Start(){
+        rightClickAlready=false;
+        leftClickAlready=false;
+
 		newParentObject=GameObject.FindGameObjectWithTag("Parent");
 
 		numOfCubes=gameController.numOfCubes;
@@ -79,18 +87,34 @@ public class DefaultBehavior : MonoBehaviour {
 			
 		}else{
             this.GetComponent<Renderer>().material.mainTexture=null;
+          
 
+
+            Destroy(this.gameObject,0.8f);
+            
 		}
+
+        leftClickAlready=true;
 
 		
 	}
 
 
 	void OnMouseOver(){
-		if(Input.GetMouseButtonDown(1)){
+        if(Input.GetMouseButtonDown(1)){
             this.GetComponent<Renderer>().material.mainTexture=flag;
-            Debug.Log(flag);
+
+            rightClickAlready=true;
 		}
+
+        if(Input.GetMouseButtonDown(1)){
+            this.GetComponent<Renderer>().material.mainTexture=defaultTexture;
+
+            rightClickAlready=true;
+        }
+
+
+
 
 	}
 	#endregion
@@ -114,6 +138,12 @@ public class DefaultBehavior : MonoBehaviour {
 		return false;
 	}
 
+
+    /// <summary>
+    /// get the number of surrounding  num cubes
+    /// </summary>
+    /// <returns>The number of number cubes.</returns>
+    /// <param name="i">The index.</param>
 	int GetNumOfNumCubes(int i){
 
 		int numCount=0;
@@ -141,15 +171,7 @@ public class DefaultBehavior : MonoBehaviour {
 	
 	}
 
-	void SetMinesIndex(int[] index){
-		//minesIndex=index;
-		minesIndex=newParentObject.GetComponent<gameController>().minesIndex;
 
-	}
-	void SetNumCubesIndex(int[] index){
-		
-		numCubesIndex=index;
-	}
 
 
 
