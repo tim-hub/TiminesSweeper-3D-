@@ -7,7 +7,7 @@ Tim's Mines Sweeper (3D)
 ### How To Play
 
 ### Features be wanted
-1. add flag texture and when right click show the flag
+1. --add flag texture and when right click show the flag--
 1. rotate more smoothly
 2. space sube more white and can be destroyed by itself when click
 2. mines position randomly
