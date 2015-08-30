@@ -45,18 +45,21 @@ public class DefaultBehavior : MonoBehaviour {
     void OnMouseOver(){
         Debug.Log("Mouse Over");
         if(Input.GetMouseButtonDown(1)){
-            Debug.Log("right click 1");
-            this.GetComponent<Renderer>().material.mainTexture=flag;
+
+            if(!rightClickAlready){
+                Debug.Log("right click 1");
+                this.GetComponent<Renderer>().material.mainTexture=flag;
             
-            rightClickAlready=true;
+                rightClickAlready=true;
+            }else{
+                Debug.Log("right click twice");
+                this.GetComponent<Renderer>().material.mainTexture=defaultTexture;
+                rightClickAlready=false;
+            }
+
         }
         
-        if(rightClickAlready&&Input.GetMouseButtonDown(1)){
-            Debug.Log("right click 2");
-            this.GetComponent<Renderer>().material.mainTexture=defaultTexture;
-            
-           // rightClickAlready=true;
-        }
+
         
     } 
         
