@@ -81,11 +81,12 @@ public class DefaultBehavior : MonoBehaviour {
     			GameObject go=Instantiate(mine,this.transform.position,new Quaternion(0,0,0,0)) as GameObject;
     			Destroy(this.gameObject);
     			go.transform.parent=newParentObject.transform;
-                if(Time.time>2f){
+                Destroy(go,1f);
 
-                    Instantiate(explosionAnim,this.transform.position,new Quaternion(0,0,0,0));
-                    Destroy(go);
-                }
+                Instantiate(explosionAnim,this.transform.position,new Quaternion(0,0,0,0));
+
+                   
+
     			
     		}else if(GetNumOfNumCubes(i)!=0){
     			int numCount=GetNumOfNumCubes(i);
