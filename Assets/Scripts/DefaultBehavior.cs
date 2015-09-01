@@ -170,7 +170,7 @@ public class DefaultBehavior : MonoBehaviour {
 		if(i+3<=numOfCubes && CheckInIndex(minesIndex,i+3)){
 				numCount++;
 			}
-		if(i+1<=numOfCubes && CheckInIndex(minesIndex,i+1)){
+        if((i%rows!=2)&&i+1<=numOfCubes && CheckInIndex(minesIndex,i+1)){ //the end in a row
 				numCount++;
 			}
 		if(i-9>=0 && CheckInIndex(minesIndex,i-9)){
@@ -179,7 +179,7 @@ public class DefaultBehavior : MonoBehaviour {
 		if(i-3>=0 && CheckInIndex(minesIndex,i-3)){
 				numCount++;
 			}
-		if(i-1>=0 && CheckInIndex(minesIndex,i-1)){
+        if((i%rows!=0)&&i-1>=0 && CheckInIndex(minesIndex,i-1)){//the beginning in a row
 				numCount++;
 			}
 
