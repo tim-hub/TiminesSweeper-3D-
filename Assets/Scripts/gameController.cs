@@ -24,6 +24,7 @@ public class gameController : MonoBehaviour {
 
 	public int[] minesIndex;
 	public int[] numCubesIndex;
+    public int[] spaceCubes;
 	#endregion
 
 
@@ -52,11 +53,9 @@ public class gameController : MonoBehaviour {
 
         minesIndex=RandomMinesPosition(5);
 
-
-
-
-
 		numCubesIndex=GetNumCubesIndex(minesIndex);
+
+        spaceCubes=GetSpaceCubes();
        
 
 
@@ -137,7 +136,31 @@ public class gameController : MonoBehaviour {
 
     }
 
+    int[] GetSpaceCubes(){
+        List<int> tmpList;
+        for (int i=0;i<numOfCubes;i++){
+            if(!(ArrayIndex(minesIndex,i))&&!(ArrayIndex(numCubesIndex,i))){
+                tmpList.Add(i);
+            }
 
+        }
+
+        int[] tmpArr=new int[tmpList.Count];
+        for (int i=0;i<tmpList.Count;i++){
+            tmpArr[i]=tmpList[i];
+        }
+        return tmpArr;
+    }
+
+    bool ArrayIndex(int[] arr, int index){
+        for(int i=0;i<arr.Length;i++){
+
+            if(arr[i]==index){
+                return true;
+            }
+        }
+        return false;
+    }
 
 	private Vector3[] CreateCubesArray(int num){
 		int i =0;
