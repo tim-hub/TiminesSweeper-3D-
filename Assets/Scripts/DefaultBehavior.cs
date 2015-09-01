@@ -36,7 +36,7 @@ public class DefaultBehavior : MonoBehaviour {
 
 		newParentObject=GameObject.FindGameObjectWithTag("Parent");
 
-		numOfCubes=gameController.numOfCubes;
+		numOfCubes=gameController.gc.numOfCubes;
 		rows=(int)(Mathf.Pow(numOfCubes,1f/3)); 
 
 		minesIndex=newParentObject.GetComponent<gameController>().minesIndex;

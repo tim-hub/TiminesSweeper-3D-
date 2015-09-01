@@ -5,13 +5,13 @@ using System.Collections.Generic;
 public class gameController : MonoBehaviour {
 
 	#region publicVars
-
+    public static gameController gc;
 	//link the objects
 	public GameObject defaultCube;
 	public GameObject parentObeject;
-	public static int numOfCubes=27; //the sum of cubes
+	public int numOfCubes=27; //the sum of cubes
 	public int numOfMines=5; //sum of mines
-
+    public int distance=2; //distance between cube and cube
 	#endregion 
 
 
@@ -33,7 +33,7 @@ public class gameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+        gc=this;
 
 
 
@@ -48,10 +48,10 @@ public class gameController : MonoBehaviour {
 
 		minesIndex=GetMinesIndex(minesArray);
 
+        //ShowArray(minesIndex);
+
 		numCubesIndex=GetNumCubesIndex(minesIndex);
 
-		//gameObject.BroadcastMessage("SetMinesIndex",minesIndex);
-		//gameObject.BroadcastMessage("SetNumCubesIndex",numCubesIndex);
 
 
 		CreateMap(cubesArray,minesIndex,numCubesIndex);
@@ -93,9 +93,9 @@ public class gameController : MonoBehaviour {
 		int i =0;
 
 		Vector3[] cubesArray=new Vector3[num];
-		for (int x=-(rows-1);x<rows;x+=2){
-			for (int y=-(rows-1);y<rows;y+=2){
-				for (int z=-(rows-1);z<rows;z+=2){
+		for (int x=-(rows-1);x<rows;x+=distance){
+			for (int y=-(rows-1);y<rows;y+=distance){
+				for (int z=-(rows-1);z<rows;z+=distance){
 					cubesArray[i]=new Vector3(x,y,z);
 					i++;
 
@@ -118,7 +118,7 @@ public class gameController : MonoBehaviour {
 	int[] GetNumCubesIndex(int[] minesIndex){
 		List <int> tmp=new List<int>();
 		for(int i=0;i<minesIndex.Length;i++){
-			if(!(minesIndex[i]+rows*rows>27 )){
+			if(!(minesIndex[i]+rows*rows>numOfCubes )){
 				
 				tmp.Add(minesIndex[i]+rows*rows);
 				
@@ -128,7 +128,7 @@ public class gameController : MonoBehaviour {
 				tmp.Add(minesIndex[i]-rows*rows);
 			}
 			
-			if(!(minesIndex[i]+rows>27 )){
+            if(!(minesIndex[i]+rows>numOfCubes)){
 				
 				tmp.Add(minesIndex[i]+rows);
 				
@@ -138,7 +138,7 @@ public class gameController : MonoBehaviour {
 				tmp.Add(minesIndex[i]-rows);
 			}
 			
-			if(!(minesIndex[i]+1>27 )){
+            if(!(minesIndex[i]+1>numOfCubes )){
 				
 				tmp.Add(minesIndex[i]+1);
 				
@@ -195,8 +195,11 @@ public class gameController : MonoBehaviour {
 	int Vector3ToInt(Vector3 cubePosition){
 		
 		
-		return (int)(((cubePosition.x+rows+1)/2-1)*rows*rows+((cubePosition.y+rows+1)/2-1)*rows
-			+(cubePosition.z+rows+1)/2-1);
+		//return (int)(((cubePosition.x+rows+1)/2-1)*rows*rows+((cubePosition.y+rows+1)/2-1)*rows
+		//	+(cubePosition.z+rows+1)/2-1);
+
+        return (int)(((cubePosition.x+distance)/distance*rows*rows)+(cubePosition.y+distance)/distance*rows+
+            (cubePosition.z+distance)/distance);
 		
 		//this is just like to count number, translate the vector3 to a number
 		//for example 
@@ -206,7 +209,11 @@ public class gameController : MonoBehaviour {
 		
 	}
 
-
+    void ShowArray(int[] array){
+        foreach(int a in array){
+            Debug.Log(a);
+        }
+    }
 
 
 
