@@ -44,11 +44,13 @@ public class gameController : MonoBehaviour {
 //		minesArray=new Vector3[]{new Vector3(-2f,-2f,-2f),new Vector3(0f,0f,0f),new Vector3(2,-2,-2),new Vector3(2,2,2),
 //			new Vector3(2,0,2)}; //this is an original mines position
 
-		// later create a method and then create this array randomly
+	
 
 
 		//minesIndex=GetMinesIndex(minesArray);
-        minesIndex=new int[] { 0, 2, 13,14,26 };
+        //minesIndex=new int[] { 0, 2, 13,14,26 };
+
+        minesIndex=RandomMinesPosition(5);
 
 
 

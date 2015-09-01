@@ -45,15 +45,20 @@ public class sceneController : MonoBehaviour {
 		}
 		
 		
-		//use mouse wheel to control
+		//use mouse wheel to control dield view
 		fov+=Input.GetAxis("Mouse ScrollWheel")*sensitivityFox*-1;
 		fov=Mathf.Clamp(fov,minFov,maxFov);
 		Camera.main.fieldOfView=fov;
+
+        //use mouse wheal to control the distance between cubes  (failed now)
+//        fov+=Input.GetAxis("Mouse ScrollWheel")*sensitivityFox*-1;
+//        fov=Mathf.Clamp(fov,1.2f,10f);
+//        gameController.gc.distance=(int)fov;
 		
 		// move by mouse wheel
 		if(Input.GetMouseButton(2)){
 			
-			parentObeject.transform.Translate(new Vector3(Input.GetAxis("Mouse X"),Input.GetAxis("Mouse Y"),0).normalized
+			parentObeject.transform.Translate(new Vector3(Input.GetAxis("Mouse X"),-Input.GetAxis("Mouse Y"),0).normalized
 			                                  *speed*Time.deltaTime,Space.Self);
 		}
 		
