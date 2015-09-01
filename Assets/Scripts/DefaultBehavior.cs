@@ -83,7 +83,8 @@ public class DefaultBehavior : MonoBehaviour {
     			go.transform.parent=newParentObject.transform;
                 Destroy(go,1f);
 
-                Instantiate(explosionAnim,this.transform.position,new Quaternion(0,0,0,0));
+                GameObject exp=Instantiate(explosionAnim,this.transform.position,new Quaternion(0,0,0,0)) as GameObject;
+                exp.transform.parent=newParentObject.transform;
 
                    
 

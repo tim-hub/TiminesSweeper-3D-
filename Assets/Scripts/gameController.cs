@@ -40,17 +40,22 @@ public class gameController : MonoBehaviour {
 		rows=(int)(Mathf.Pow(numOfCubes,1f/3));  //use 1f/3 not 1/3
 		cubesArray=CreateCubesArray(numOfCubes);
 
-		minesArray=new Vector3[]{new Vector3(-2f,-2f,-2f),new Vector3(0f,0f,0f),new Vector3(2,-2,-2),new Vector3(2,2,2),
-			new Vector3(2,0,2)};
+
+//		minesArray=new Vector3[]{new Vector3(-2f,-2f,-2f),new Vector3(0f,0f,0f),new Vector3(2,-2,-2),new Vector3(2,2,2),
+//			new Vector3(2,0,2)}; //this is an original mines position
 
 		// later create a method and then create this array randomly
 
 
-		minesIndex=GetMinesIndex(minesArray);
+		//minesIndex=GetMinesIndex(minesArray);
+        minesIndex=new int[] { 0, 2, 13,14,26 };
 
-        //ShowArray(minesIndex);
+
+
+
 
 		numCubesIndex=GetNumCubesIndex(minesIndex);
+       
 
 
 
@@ -86,6 +91,49 @@ public class gameController : MonoBehaviour {
 		
 
 	}
+
+    int[] RandomMinesPosition(int sum){
+
+        int[] arr = new int[sum];
+        int j = 0;
+        //表示键和值对的集合。
+        Hashtable hashtable = new Hashtable();
+        System.Random rm = new System.Random();
+        for (int i = 0; hashtable.Count < sum; i++)
+        {
+            //返回一个小于所指定最大值的非负随机数
+            int nValue = rm.Next(numOfCubes);
+            //containsValue(object value)   是否包含特定值
+            if (!hashtable.ContainsValue(nValue) && nValue != 0)
+            {
+                //把键和值添加到hashtable
+                hashtable.Add(nValue, nValue);
+                //Debug.Log(i);
+                arr[j] = nValue;
+                
+                j++;
+            }
+        }
+        int temp;
+        //最多做n-1趟排序
+        for (int i = 0; i < arr.Length - 1; i++)
+        {
+            //对当前无序区间score[0......length-i-1]进行排序(j的范围很关键，这个范围是在逐步缩小的)
+            for (j = 0; j < arr.Length - i - 1; j++)
+            {
+                if (arr[j] > arr[j + 1])
+                {
+                    temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+        
+        return arr;
+
+
+    }
 
 
 
