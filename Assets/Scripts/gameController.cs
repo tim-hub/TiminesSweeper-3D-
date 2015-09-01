@@ -97,17 +97,17 @@ public class gameController : MonoBehaviour {
 
         int[] arr = new int[sum];
         int j = 0;
-        //表示键和值对的集合。
+        //表示键和值对的集合。 se hashable to store key and values
         Hashtable hashtable = new Hashtable();
         System.Random rm = new System.Random();
         for (int i = 0; hashtable.Count < sum; i++)
         {
-            //返回一个小于所指定最大值的非负随机数
+            //返回一个小于所指定最大值的非负随机数  return a number < max but >0
             int nValue = rm.Next(numOfCubes);
             //containsValue(object value)   是否包含特定值
             if (!hashtable.ContainsValue(nValue) && nValue != 0)
             {
-                //把键和值添加到hashtable
+                //把键和值添加到hashtable add key value to hashtable
                 hashtable.Add(nValue, nValue);
                 //Debug.Log(i);
                 arr[j] = nValue;
@@ -116,7 +116,7 @@ public class gameController : MonoBehaviour {
             }
         }
         int temp;
-        //最多做n-1趟排序
+        //最多做n-1趟排序  sort array
         for (int i = 0; i < arr.Length - 1; i++)
         {
             //对当前无序区间score[0......length-i-1]进行排序(j的范围很关键，这个范围是在逐步缩小的)
@@ -137,7 +137,7 @@ public class gameController : MonoBehaviour {
     }
 
     int[] GetSpaceCubes(){
-        List<int> tmpList;
+        List<int> tmpList=new List<int>();
         for (int i=0;i<numOfCubes;i++){
             if(!(ArrayIndex(minesIndex,i))&&!(ArrayIndex(numCubesIndex,i))){
                 tmpList.Add(i);

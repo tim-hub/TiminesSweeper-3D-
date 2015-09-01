@@ -42,5 +42,5 @@ Contact me, we achieved / fix it together.
 - flag.png is from [ooopic](http://www.ooopic.com/) and it is free to use.
 - mine module is from unity3d assest, it is free.
 - Luckiestguy font is under apache license v2.
-- mars and star matand texures areall from gopedu's demo.
+- mars and star materials and texures are all from gopedu's demo.
 - 1~6 texture and core codes are all Copy Left, under GNU License
