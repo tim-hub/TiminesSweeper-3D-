@@ -10,7 +10,7 @@ For now this is a mines sweeper 3d's core(2015/08/30),
 1. ~~add flag texture and when right click show the flag~~
 1. rotate more smoothly
 2. space cube more white and ~~can be destroyed by itself when click~~
-2. mines position randomly
+2. ~~mines position randomly~~
 2. when click space cube, then other space near it show too
 4. when click mine, show mine and show the explosion
 5. maybe use whel control the distance between cubes not the distance between camera and parent objct
