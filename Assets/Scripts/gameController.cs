@@ -49,9 +49,9 @@ public class gameController : MonoBehaviour {
 
 
 		//minesIndex=GetMinesIndex(minesArray);
-        //minesIndex=new int[] { 0, 2, 13,14,26 };
+        minesIndex=new int[] { 0, 2, 13,14,26 };
 
-        minesIndex=RandomMinesPosition(5);
+        //minesIndex=RandomMinesPosition(5);
 
 		numCubesIndex=GetNumCubesIndex(minesIndex);
 

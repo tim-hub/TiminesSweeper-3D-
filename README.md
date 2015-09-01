@@ -35,6 +35,7 @@ For now this is a mines sweeper 3d's core(2015/08/30),
 
 ###Have Cool Ideas || Find Bugs?
 1. count the near 27 cubes not 6 cubes now
+2. maybe make cube matrix not a cube but a cuboid
 
 Contact me, we achieved / fix it together.
 
