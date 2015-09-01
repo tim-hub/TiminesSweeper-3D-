@@ -58,7 +58,7 @@ public class sceneController : MonoBehaviour {
 		// move by mouse wheel
 		if(Input.GetMouseButton(2)){
 			
-			parentObeject.transform.Translate(new Vector3(Input.GetAxis("Mouse X"),-Input.GetAxis("Mouse Y"),0).normalized
+			parentObeject.transform.Translate(new Vector3(Input.GetAxis("Mouse X"),0,0).normalized
 			                                  *speed*Time.deltaTime,Space.Self);
 		}
 		
