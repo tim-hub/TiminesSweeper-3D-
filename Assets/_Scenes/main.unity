@@ -267,6 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultCube: {fileID: 139492, guid: 40b133b46575bd74abeea06e9d6508bc, type: 2}
   parentObeject: {fileID: 391632229}
+  cubesList: []
   numOfCubes: 27
   numOfMines: 5
   distance: 2

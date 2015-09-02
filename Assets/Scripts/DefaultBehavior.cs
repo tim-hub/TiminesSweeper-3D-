@@ -133,12 +133,12 @@ public class DefaultBehavior : MonoBehaviour {
                 //this.transform.localScale=new Vector3(0.5f,0.5f,0.5f);
                 //Destroy(this.gameObject,0.8f);
 
-//                List<int> nearingSpcaeCubesList=GetCollectionInSpaceCubesIndex(i);
-//                for (int j=0;j<nearingSpcaeCubesList.Count;j++){
-//
-//                    Destroy(cubesList[nearingSpcaeCubesList[j]]);
-//
-//                }
+                List<int> nearingSpcaeCubesList=GetCollectionInSpaceCubesIndex(i);
+                for (int j=0;j<nearingSpcaeCubesList.Count;j++){
+
+                    Destroy(cubesList[nearingSpcaeCubesList[j]]);
+
+                }
 
                 
     		}
@@ -154,27 +154,45 @@ public class DefaultBehavior : MonoBehaviour {
     List<int> GetCollectionInSpaceCubesIndex(int index){
         List<int> tmpList=new List<int>();
         if(CheckInSpcaeCubesIndex(index)){
-            tmpList.Add(index);
+
+            if((!CheckInSpcaeCubesIndex(index-9)
+                &&!CheckInSpcaeCubesIndex(index-3)
+                &&!CheckInSpcaeCubesIndex(index-1)
+                &&!CheckInSpcaeCubesIndex(index+1)
+                &&!CheckInSpcaeCubesIndex(index+3)
+                &&!CheckInSpcaeCubesIndex(index+9)
+                )){
+                    tmpList.Add(index);
+                    return tmpList;
+            }else{
+            
+                tmpList.AddRange(GetCollectionInSpaceCubesIndex(index-9));
+                tmpList.AddRange(GetCollectionInSpaceCubesIndex(index-3));
+                tmpList.AddRange(GetCollectionInSpaceCubesIndex(index-1));
+                tmpList.AddRange(GetCollectionInSpaceCubesIndex(index+1));
+                tmpList.AddRange(GetCollectionInSpaceCubesIndex(index+3));
+                tmpList.AddRange(GetCollectionInSpaceCubesIndex(index+9));
+            }
 
         }
-        if((index%rows!=2)&&index+1<numOfCubes&&CheckInSpcaeCubesIndex(index+1)){
-            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index+1));
-        }
-        if((index%rows!=0)&&index-1>0&&CheckInSpcaeCubesIndex(index-1)){
-            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index-1));
-        }
-        if(index+3<numOfCubes&&CheckInSpcaeCubesIndex(index+3)){
-            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index+3));
-        }
-        if(index-3>0&&CheckInSpcaeCubesIndex(index-3)){
-            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index-3));
-        }
-        if(index+9<numOfCubes&&CheckInSpcaeCubesIndex(index+9)){
-            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index+9));
-        }
-        if(index-9>0&&CheckInSpcaeCubesIndex(index-9)){
-            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index-9));
-        }
+//        if((index%rows!=2)&&index+1<numOfCubes&&CheckInSpcaeCubesIndex(index+1)){
+//            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index+1));
+//        }
+//        if((index%rows!=0)&&index-1>0&&CheckInSpcaeCubesIndex(index-1)){
+//            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index-1));
+//        }
+//        if(index+3<numOfCubes&&CheckInSpcaeCubesIndex(index+3)){
+//            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index+3));
+//        }
+//        if(index-3>0&&CheckInSpcaeCubesIndex(index-3)){
+//            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index-3));
+//        }
+//        if(index+9<numOfCubes&&CheckInSpcaeCubesIndex(index+9)){
+//            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index+9));
+//        }
+//        if(index-9>0&&CheckInSpcaeCubesIndex(index-9)){
+//            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index-9));
+//        }
 
 
         return tmpList;
@@ -182,6 +200,9 @@ public class DefaultBehavior : MonoBehaviour {
 
 
     bool CheckInSpcaeCubesIndex(int index){
+        if (index<0||index>=numOfCubes){
+            return false;
+        }
         for(int j=0;j<spaceCubesIndex.Length;j++){
             if(j==index){
                 return true;
