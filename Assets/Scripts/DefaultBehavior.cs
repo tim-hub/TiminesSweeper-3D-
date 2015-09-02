@@ -133,12 +133,13 @@ public class DefaultBehavior : MonoBehaviour {
                 //this.transform.localScale=new Vector3(0.5f,0.5f,0.5f);
                 //Destroy(this.gameObject,0.8f);
 
-                List<int> nearingSpcaeCubesList=GetCollectionInSpaceCubesIndex(i);
-                for (int j=0;j<nearingSpcaeCubesList.Count;j++){
-
-                    Destroy(cubesList[nearingSpcaeCubesList[j]]);
-
-                }
+//                List<int> nearingSpcaeCubesList=GetCollectionInSpaceCubesIndex(i);
+//                for (int j=0;j<nearingSpcaeCubesList.Count;j++){
+//
+//                    Destroy(cubesList[nearingSpcaeCubesList[j]]);
+//
+//                }
+                Destroy(this.gameObject,0.8f);
 
                 
     		}
@@ -151,7 +152,10 @@ public class DefaultBehavior : MonoBehaviour {
 	#endregion
 
 	#region UserMethods
-    List<int> GetCollectionInSpaceCubesIndex(int index){
+
+
+
+    List<int> GetCollectionInSpaceCubesIndex(int index){  //there is something wrong in this recursion
         List<int> tmpList=new List<int>();
         if(CheckInSpcaeCubesIndex(index)){
 
