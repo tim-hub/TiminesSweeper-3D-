@@ -49,6 +49,8 @@ public class DefaultBehavior : MonoBehaviour {
         numCubesIndex=gameController.gc.numCubesIndex;
         spaceCubesIndex=gameController.gc.spaceCubesIndex;
 
+
+
 	}
 
     void Update(){

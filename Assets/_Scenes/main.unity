@@ -274,7 +274,7 @@ MonoBehaviour:
   minesIndex: 
   numCubesIndex: 
   spaceCubesIndex: 
-  startGame: 0
+  startGame: 1
   scoreText: {fileID: 995926632}
 --- !u!1 &702310973
 GameObject:
