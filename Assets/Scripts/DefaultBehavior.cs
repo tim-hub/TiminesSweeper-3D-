@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DefaultBehavior : MonoBehaviour {
 
@@ -23,6 +24,7 @@ public class DefaultBehavior : MonoBehaviour {
 	int rows;
 	int[] minesIndex;
 	int[] numCubesIndex;
+    int[] spaceCubesIndex;
 
     bool flagShowAlready;
 
@@ -39,8 +41,11 @@ public class DefaultBehavior : MonoBehaviour {
 		numOfCubes=gameController.gc.numOfCubes;
 		rows=(int)(Mathf.Pow(numOfCubes,1f/3)); 
 
-		minesIndex=newParentObject.GetComponent<gameController>().minesIndex;
-		numCubesIndex=newParentObject.GetComponent<gameController>().numCubesIndex;
+//		minesIndex=newParentObject.GetComponent<gameController>().minesIndex;
+//		numCubesIndex=newParentObject.GetComponent<gameController>().numCubesIndex;
+        minesIndex=gameController.gc.minesIndex;
+        numCubesIndex=gameController.gc.numCubesIndex;
+        spaceCubesIndex=gameController.gc.spaceCubesIndex;
 
 	}
 
@@ -73,7 +78,7 @@ public class DefaultBehavior : MonoBehaviour {
 
 	void OnMouseDown () {
 		Debug.Log (this.transform.localPosition);
-		int i=Vector3ToInt(this.transform.localPosition);
+		int i=gameController.gc.Vector3ToInt(this.transform.localPosition);
 
         if(!flagShowAlready){
     		if(CheckInIndex(minesIndex,i)){
@@ -125,6 +130,13 @@ public class DefaultBehavior : MonoBehaviour {
 
                 //this.transform.localScale=new Vector3(0.5f,0.5f,0.5f);
                 Destroy(this.gameObject,0.8f);
+
+                List<int> nearingSpcaeCubesList=GetCollectionInSpaceCubesIndex(i);
+                for (int j=0;j<nearingSpcaeCubesList.Count;j++){
+
+                    Destroy(nearingSpcaeCubesList[j]);
+                }
+
                 
     		}
         }
@@ -136,11 +148,48 @@ public class DefaultBehavior : MonoBehaviour {
 	#endregion
 
 	#region UserMethods
+    List<int> GetCollectionInSpaceCubesIndex(int index){
+        List<int> tmpList;
+        if(CheckInSpcaeCubesIndex(index)){
+            tmpList.Add(index);
 
-	int Vector3ToInt(Vector3 cubePosition){
-		return (int)(((cubePosition.x+rows+1)/2-1)*rows*rows+((cubePosition.y+rows+1)/2-1)*rows
-		             +(cubePosition.z+rows+1)/2-1);
-	}
+        }
+        if((index%rows!=2)&&index+1<numOfCubes&&CheckInSpcaeCubesIndex(index+1)){
+            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index+1));
+        }
+        if((index%rows!=0)&&index-1>0&&CheckInSpcaeCubesIndex(index-1)){
+            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index-1));
+        }
+        if(index+3<numOfCubes&&CheckInSpcaeCubesIndex(index+3)){
+            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index+3));
+        }
+        if(index-3>0&&CheckInSpcaeCubesIndex(index-3)){
+            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index-3));
+        }
+        if(index+9<numOfCubes&&CheckInSpcaeCubesIndex(index+9)){
+            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index+9));
+        }
+        if(index-9>0&&CheckInSpcaeCubesIndex(index-9)){
+            tmpList.AddRange(GetCollectionInSpaceCubesIndex(index-9));
+        }
+
+
+        return tmpList;
+    }
+
+
+    bool CheckInSpcaeCubesIndex(int index){
+        for(int j=0;j<spaceCubesIndex.Length;j++){
+            if(j==index){
+                return true;
+            }
+            
+        }
+        return false;
+    
+    }
+
+
 
 
 	//the index in array?

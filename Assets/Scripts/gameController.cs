@@ -24,7 +24,7 @@ public class gameController : MonoBehaviour {
 
 	public int[] minesIndex;
 	public int[] numCubesIndex;
-    public int[] spaceCubes;
+    public int[] spaceCubesIndex;
 	#endregion
 
 
@@ -55,7 +55,7 @@ public class gameController : MonoBehaviour {
 
 		numCubesIndex=GetNumCubesIndex(minesIndex);
 
-        spaceCubes=GetSpaceCubes();
+        spaceCubesIndex=GetSpaceCubes();
        
 
 
@@ -144,6 +144,7 @@ public class gameController : MonoBehaviour {
             }
 
         }
+
 
         int[] tmpArr=new int[tmpList.Count];
         for (int i=0;i<tmpList.Count;i++){
@@ -265,7 +266,7 @@ public class gameController : MonoBehaviour {
 		
 	}
 	
-	int Vector3ToInt(Vector3 cubePosition){
+	public int Vector3ToInt(Vector3 cubePosition){
 		
 		
 		//return (int)(((cubePosition.x+rows+1)/2-1)*rows*rows+((cubePosition.y+rows+1)/2-1)*rows
@@ -281,6 +282,12 @@ public class gameController : MonoBehaviour {
 		//(-2,
 		
 	}
+
+    public Vector3 IntToVector(int index){
+    
+        return new Vector3(index/(rows*rows)*distance-distance,(index%(rows*rows))/rows*distance-distance,
+                           (index%(rows*rows))%rows*distance-distance));
+    }
 
     void ShowArray(int[] array){
         foreach(int a in array){

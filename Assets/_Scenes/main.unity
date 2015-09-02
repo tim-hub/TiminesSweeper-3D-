@@ -272,6 +272,7 @@ MonoBehaviour:
   distance: 2
   minesIndex: 
   numCubesIndex: 
+  spaceCubesIndex: 
 --- !u!1 &702310973
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,8 +354,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 778417662}
-  - 223: {fileID: 778417661}
   - 114: {fileID: 778417660}
+  - 223: {fileID: 778417661}
   - 114: {fileID: 778417659}
   m_Layer: 5
   m_Name: Time
