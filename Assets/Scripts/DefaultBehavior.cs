@@ -61,12 +61,12 @@ public class DefaultBehavior : MonoBehaviour {
         if(Input.GetMouseButtonDown(1)){
 
             if(!flagShowAlready){
-                Debug.Log("right click 1");
+                //Debug.Log("right click 1");
                 this.GetComponent<Renderer>().material.mainTexture=flag;
             
                 flagShowAlready=true;
             }else{
-                Debug.Log("right click twice");
+                //Debug.Log("right click twice");
                 this.GetComponent<Renderer>().material.mainTexture=defaultTexture;
 
                 flagShowAlready=false;
@@ -131,14 +131,14 @@ public class DefaultBehavior : MonoBehaviour {
               
 
                 //this.transform.localScale=new Vector3(0.5f,0.5f,0.5f);
-                Destroy(this.gameObject,0.8f);
+                //Destroy(this.gameObject,0.8f);
 
-                List<int> nearingSpcaeCubesList=GetCollectionInSpaceCubesIndex(i);
-                for (int j=0;j<nearingSpcaeCubesList.Count;j++){
-
-                    Destroy(cubesList[nearingSpcaeCubesList[j]]);
-
-                }
+//                List<int> nearingSpcaeCubesList=GetCollectionInSpaceCubesIndex(i);
+//                for (int j=0;j<nearingSpcaeCubesList.Count;j++){
+//
+//                    Destroy(cubesList[nearingSpcaeCubesList[j]]);
+//
+//                }
 
                 
     		}
