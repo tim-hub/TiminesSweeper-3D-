@@ -40,7 +40,7 @@ For now this is a mines sweeper 3d's core(2015/08/30),
 
 Contact me, we achieved / fix it together.
 
-###Licensense
+###Licenses
 - flag.png is from [ooopic](http://www.ooopic.com/) and it is free to use.
 - mine module is from unity3d assest, it is free.
 - Luckiestguy font is under apache license v2.
