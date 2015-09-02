@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -13,6 +14,15 @@ public class gameController : MonoBehaviour {
 	public int numOfCubes=27; //the sum of cubes
 	public int numOfMines=5; //sum of mines
     public int distance=2; //distance between cube and cube
+
+    
+    public int[] minesIndex;
+    public int[] numCubesIndex;
+    public int[] spaceCubesIndex;
+
+    public bool startGame=true;
+
+	public Text scoreText;
 	#endregion 
 
 
@@ -23,9 +33,6 @@ public class gameController : MonoBehaviour {
 
 	private int rows;
 
-	public int[] minesIndex;
-	public int[] numCubesIndex;
-    public int[] spaceCubesIndex;
 	#endregion
 
 
@@ -71,10 +78,19 @@ public class gameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if(!startGame){
+            Time.timeScale=0;
+        }
 
+        scoreText.text="TIME: "+Time.time;
 
 
 	}
+
+    void OnGUI(){
+
+
+    }
 
 	#endregion
 

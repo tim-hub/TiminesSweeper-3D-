@@ -274,6 +274,7 @@ MonoBehaviour:
   minesIndex: 
   numCubesIndex: 
   spaceCubesIndex: 
+  startGame: 1
 --- !u!1 &702310973
 GameObject:
   m_ObjectHideFlags: 0
