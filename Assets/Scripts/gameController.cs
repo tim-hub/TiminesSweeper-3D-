@@ -9,6 +9,7 @@ public class gameController : MonoBehaviour {
 	//link the objects
 	public GameObject defaultCube;
 	public GameObject parentObeject;
+    public List<GameObject> cubesList;
 	public int numOfCubes=27; //the sum of cubes
 	public int numOfMines=5; //sum of mines
     public int distance=2; //distance between cube and cube
@@ -86,8 +87,9 @@ public class gameController : MonoBehaviour {
 		//int numCount=0;
 		for (int i=0;i<numOfCubes;i++){
 			go=Instantiate(defaultCube,cubesArray[i],new Quaternion(0,0,0,0)) as GameObject;
-			go.transform.parent=parentObeject.transform;
 
+			go.transform.parent=parentObeject.transform;
+            cubesList.Add(go);
 		}
 		
 
@@ -286,7 +288,7 @@ public class gameController : MonoBehaviour {
     public Vector3 IntToVector(int index){
     
         return new Vector3(index/(rows*rows)*distance-distance,(index%(rows*rows))/rows*distance-distance,
-                           (index%(rows*rows))%rows*distance-distance));
+                           (index%(rows*rows))%rows*distance-distance);
     }
 
     void ShowArray(int[] array){

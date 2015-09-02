@@ -19,6 +19,7 @@ public class DefaultBehavior : MonoBehaviour {
 	GameObject newParentObject;
 	
 	
+    List<GameObject> cubesList=new List<GameObject>();
 
 	int numOfCubes;
 	int rows;
@@ -33,6 +34,7 @@ public class DefaultBehavior : MonoBehaviour {
 
 	#region UnityMethods
 	void Start(){
+        cubesList=gameController.gc.cubesList;
         flagShowAlready=false;
     
 
@@ -134,7 +136,8 @@ public class DefaultBehavior : MonoBehaviour {
                 List<int> nearingSpcaeCubesList=GetCollectionInSpaceCubesIndex(i);
                 for (int j=0;j<nearingSpcaeCubesList.Count;j++){
 
-                    Destroy(nearingSpcaeCubesList[j]);
+                    Destroy(cubesList[nearingSpcaeCubesList[j]]);
+
                 }
 
                 
@@ -149,7 +152,7 @@ public class DefaultBehavior : MonoBehaviour {
 
 	#region UserMethods
     List<int> GetCollectionInSpaceCubesIndex(int index){
-        List<int> tmpList;
+        List<int> tmpList=new List<int>();
         if(CheckInSpcaeCubesIndex(index)){
             tmpList.Add(index);
 
