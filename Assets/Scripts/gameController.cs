@@ -20,7 +20,7 @@ public class gameController : MonoBehaviour {
     public int[] numCubesIndex;
     public int[] spaceCubesIndex;
 
-    public bool startGame=true;
+    public bool startGame=false;
 
 	public Text scoreText;
 	#endregion 
@@ -79,6 +79,8 @@ public class gameController : MonoBehaviour {
 	void Update () {
 
         if(!startGame){
+            Time.timeScale=0;
+        }else{
             Time.timeScale=0;
         }
 
