@@ -13,9 +13,7 @@ public class StartGame : MonoBehaviour {
 
     void Update(){
 
-        if(buttonStart.onClick){
-            Application.LoadLevel("main");
-        }
+
     }
 
 
