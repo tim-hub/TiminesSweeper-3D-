@@ -3,6 +3,7 @@
 # =============== #
 Temp/
 Library/
+Builds/
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
@@ -29,3 +30,6 @@ obj/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+#git
+.gitignore
