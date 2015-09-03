@@ -275,6 +275,7 @@ MonoBehaviour:
   numCubesIndex: 
   spaceCubesIndex: 
   startGame: 1
+  runningTime: 0
   scoreText: {fileID: 995926632}
 --- !u!1 &702310973
 GameObject:
@@ -361,7 +362,7 @@ GameObject:
   - 223: {fileID: 778417661}
   - 114: {fileID: 778417659}
   m_Layer: 5
-  m_Name: Time
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -495,7 +496,7 @@ GameObject:
   - 222: {fileID: 995926633}
   - 114: {fileID: 995926632}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TimeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

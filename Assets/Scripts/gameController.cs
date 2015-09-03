@@ -88,7 +88,7 @@ public class gameController : MonoBehaviour {
 
 
 
-        scoreText.text="TIME: "+(Time.time-runningTime);
+        scoreText.text="TIME: "+(Time.time-runningTime).ToString("0.0");
 
 
 	}
