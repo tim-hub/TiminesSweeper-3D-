@@ -3,19 +3,13 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class StartGame : MonoBehaviour {
-    public Button buttonStart;
-    public Button buttonHelp;
-    public Button buttonAbout;
-    public Button buttonQuit;
-    public Text text;
+	public void ClickToStart(){
+		Application.LoadLevel("main");
+	}
 
-
-
-    void Update(){
-
-
-    }
-
+	public void ClickToQuit(){
+		Application.Quit();
+	}
 
 
 
