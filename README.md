@@ -12,9 +12,7 @@ Tim's Mines Sweeper (3D)
 1. ~~rotate more smoothly~~ (not use the y input when click right button to rotate)
 2. ~~can be destroyed by itself when click~~
 2. ~~mines position randomly~~
-2. when click space cube, then other space near it show too
 4. ~~when click mine, show mine and show the explosion~~
-5. maybe use whel control the distance between cubes not the distance between camera and parent objct
 6. ~~background change to more like the space~~
 7. add audio, like explosion, click
 8. UI(start,restart, show help, control tips)
@@ -24,6 +22,8 @@ Tim's Mines Sweeper (3D)
 11. share to friends (by email fb or others)
 12. make mouse like a space man
 13. space cube more white
+2. when click space cube, then other space near it show too
+5. maybe use whel control the distance between cubes not the distance between camera and parent objct
 
 ~~means the feature has already be achived~~
 

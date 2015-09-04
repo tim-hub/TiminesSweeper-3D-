@@ -28,6 +28,7 @@ public class DefaultBehavior : MonoBehaviour {
     int[] spaceCubesIndex;
 
     bool flagShowAlready;
+    bool numTextureAlready;
 
    
 
@@ -36,6 +37,7 @@ public class DefaultBehavior : MonoBehaviour {
 	void Start(){
         cubesList=gameController.gc.cubesList;
         flagShowAlready=false;
+        numTextureAlready=false;
     
 
 		newParentObject=GameObject.FindGameObjectWithTag("Parent");
@@ -62,7 +64,7 @@ public class DefaultBehavior : MonoBehaviour {
         Debug.Log("Mouse Over");
         if(Input.GetMouseButtonDown(1)){
 
-            if(!flagShowAlready){
+            if((!flagShowAlready )&&(!numTextureAlready)){
                 //Debug.Log("right click 1");
                 this.GetComponent<Renderer>().material.mainTexture=flag;
             
@@ -127,6 +129,7 @@ public class DefaultBehavior : MonoBehaviour {
     				break;
     			}
     			
+                numTextureAlready=true;
     			
     		}else{
                 this.GetComponent<Renderer>().material.mainTexture=null;
