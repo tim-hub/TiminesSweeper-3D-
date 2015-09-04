@@ -47,4 +47,6 @@ Contact me, we achieved / fix it together.
 - mine module is from unity3d assest, it is free.
 - Luckiestguy font is under apache license v2.
 - mars and star materials and texures are all from gopedu's demo.
+- explosion prefab is from assest store, it is free to use.
+- the explosion audio is from gopedu, it is free to use too.
 - 1~6 texture and core codes are all Copy Left, under GNU License
