@@ -32,6 +32,7 @@ Tim's Mines Sweeper (3D)
 1. ~~when rotate use right button, when touch cube, flag will show~~
 2. explosion is earlier than mine cube shows
 3. when use random mines position num cubes show wrong number
+4. when use the different number of cubes, wrong
 
 ~~means the bugs has already be fixed~~
 

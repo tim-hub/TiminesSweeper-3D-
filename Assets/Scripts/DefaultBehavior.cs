@@ -62,9 +62,9 @@ public class DefaultBehavior : MonoBehaviour {
 
     void OnMouseOver(){
         Debug.Log("Mouse Over");
-        if(Input.GetMouseButtonDown(1)){
+        if(Input.GetMouseButtonDown(1)&&(!numTextureAlready)){
 
-            if((!flagShowAlready )&&(!numTextureAlready)){
+            if((!flagShowAlready )){
                 //Debug.Log("right click 1");
                 this.GetComponent<Renderer>().material.mainTexture=flag;
             
