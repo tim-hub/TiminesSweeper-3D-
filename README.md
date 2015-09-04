@@ -3,7 +3,7 @@ Tim's Mines Sweeper (3D)
 
 ###About
 - This is a mines sweeper 3d's core(2015/08/30)
-- Got a simple UI
+- Got a simple UI(20150903)
 
 ### How To Play
 
