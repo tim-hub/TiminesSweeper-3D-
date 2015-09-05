@@ -24,6 +24,7 @@ public class gameController : MonoBehaviour {
     public float runningTime=0;
 
 	public Text scoreText;
+    public Canvas canvasESCMenu;
 	#endregion 
 
 
@@ -46,7 +47,7 @@ public class gameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         gc=this;
-
+        canvasESCMenu.enabled=false;
 
 
 		rows=(int)(Mathf.Pow(numOfCubes,1f/3));  //use 1f/3 not 1/3
@@ -103,10 +104,13 @@ public class gameController : MonoBehaviour {
                 startGame=false;
                 GetComponents<AudioSource>()[1].Pause();
                 escapeOnce=true;
+                canvasESCMenu.enabled=true;
+
             }else{
                 GetComponents<AudioSource>()[1].Play();
                 startGame=true;
                 escapeOnce=false;
+                canvasESCMenu.enabled=false;
             }
         }
 

@@ -689,6 +689,7 @@ MonoBehaviour:
   startGame: 1
   runningTime: 0
   scoreText: {fileID: 995926632}
+  canvasESCMenu: {fileID: 212514720}
 --- !u!82 &391632232
 AudioSource:
   m_ObjectHideFlags: 0
