@@ -49,4 +49,6 @@ Contact me, we achieved / fix it together.
 - mars and star materials and texures are all from gopedu's demo.
 - explosion prefab is from assest store, it is free to use.
 - the explosion audio is from gopedu, it is free to use too.
+- audio music_backgroun is from assest store, space shooter, it is free tu use too
+- click2.mp3 is under Attribution 3.0 license
 - 1~6 texture and core codes are all Copy Left, under GNU License

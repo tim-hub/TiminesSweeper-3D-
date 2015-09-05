@@ -5,6 +5,7 @@ using System.Collections;
 public class StartGame : MonoBehaviour {
 	public void ClickToStart(){
 		Application.LoadLevel("main");
+
 	}
 
 	public void ClickToQuit(){

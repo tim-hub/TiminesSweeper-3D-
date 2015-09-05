@@ -91,12 +91,11 @@ public class gameController : MonoBehaviour {
         scoreText.text="TIME: "+(Time.time-runningTime).ToString("0.0");
 
 
+        if(Input.GetMouseButtonDown(0)||Input.GetMouseButtonDown(1)){
+            GetComponent<AudioSource>().Play();
+        }
+
 	}
-
-    void OnGUI(){
-
-
-    }
 
 	#endregion
 

@@ -220,7 +220,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a019ae3af8e864616b85773c509f5285, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 11bf16b517c090942831db8e5801e1c3, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -7704,7 +7704,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: a019ae3af8e864616b85773c509f5285, type: 3}
+      objectReference: {fileID: 8300000, guid: 11bf16b517c090942831db8e5801e1c3, type: 3}
     - target: {fileID: 0}
       propertyPath: InitialModule.startColor.maxColor.rgba
       value: 872950539
@@ -7724,6 +7724,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: InitialModule.startLifetime.scalar
       value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_PlayOnAwake
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
