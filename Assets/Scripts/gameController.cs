@@ -34,6 +34,8 @@ public class gameController : MonoBehaviour {
 
 	private int rows;
 
+    bool escapeOnce=false;
+
 	#endregion
 
 
@@ -88,11 +90,24 @@ public class gameController : MonoBehaviour {
 
 
 
-        scoreText.text="TIME: "+(Time.time-runningTime).ToString("0.0");
+        scoreText.text="TIME: "+(Time.time).ToString("0.0");
 
 
         if(Input.GetMouseButtonDown(0)||Input.GetMouseButtonDown(1)){
-            GetComponent<AudioSource>().Play();
+            GetComponents<AudioSource>()[0].Play();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape) ){
+            Debug.Log("Press escape");
+            if(escapeOnce==false){
+                startGame=false;
+                GetComponents<AudioSource>()[1].Pause();
+                escapeOnce=true;
+            }else{
+                GetComponents<AudioSource>()[1].Play();
+                startGame=true;
+                escapeOnce=false;
+            }
         }
 
 	}

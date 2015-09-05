@@ -30,6 +30,8 @@ public class DefaultBehavior : MonoBehaviour {
     bool flagShowAlready;
     bool numTextureAlready;
 
+    bool startGame;
+
    
 
 
@@ -50,34 +52,47 @@ public class DefaultBehavior : MonoBehaviour {
         minesIndex=gameController.gc.minesIndex;
         numCubesIndex=gameController.gc.numCubesIndex;
         spaceCubesIndex=gameController.gc.spaceCubesIndex;
-
+        startGame=gameController.gc.startGame;
 
 
 	}
 
     void Update(){
+        startGame=gameController.gc.startGame;
 
+        if(!startGame){
+            Time.timeScale=0;
+        }else{
+            Time.timeScale=1;
+        }
     
     }
 
-    void OnMouseOver(){
-        Debug.Log("Mouse Over");
-        if(Input.GetMouseButtonDown(1)&&(!numTextureAlready)){
+    public void ClickDefaultCube(){
+       
+        
 
+    }
+
+
+    void OnMouseOver(){
+        if(startGame&&Input.GetMouseButtonDown(1)&&(!numTextureAlready)){
+            Debug.Log("Mouse Right Click");
             if((!flagShowAlready )){
                 //Debug.Log("right click 1");
                 this.GetComponent<Renderer>().material.mainTexture=flag;
-            
+                
                 flagShowAlready=true;
             }else{
                 //Debug.Log("right click twice");
                 this.GetComponent<Renderer>().material.mainTexture=defaultTexture;
-
+                
                 flagShowAlready=false;
             }
-
+            
         }
- 
+        
+        
     } 
         
 
@@ -86,7 +101,7 @@ public class DefaultBehavior : MonoBehaviour {
 		Debug.Log (this.transform.localPosition);
 		int i=gameController.gc.Vector3ToInt(this.transform.localPosition);
 
-        if(!flagShowAlready){
+        if(startGame&&!flagShowAlready){
     		if(CheckInIndex(minesIndex,i)){
 
     			GameObject go=Instantiate(mine,this.transform.position,new Quaternion(0,0,0,0)) as GameObject;
@@ -270,14 +285,6 @@ public class DefaultBehavior : MonoBehaviour {
 	}
 
 
-    void Explosion(){
-        //audio
-
-
-        //anim
-
-    
-    }
 
 
 
