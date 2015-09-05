@@ -6,6 +6,15 @@ Tim's Mines Sweeper (3D)
 - Got a simple UI(20150903)
 
 ### How To Play
+1. click the cube to mine the cube
+2. right click the cube to falg it
+3. right click th background and move your mouse, rotate the cubes
+4. control your wheal forward to move forward, backward to backward
+5. try w a s d keys
+6. got all mines' position, you'll win
+7. mine the mine, you will lose
+8. see help if you forget how to play or control
+
 
 ### Features be wanted
 1. ~~add flag texture and when right click show the flag~~
@@ -14,7 +23,7 @@ Tim's Mines Sweeper (3D)
 2. ~~mines position randomly~~
 4. ~~when click mine, show mine and show the explosion~~
 6. ~~background change to more like the space~~
-7. add audio, like explosion, click
+7. ~~add audio, like explosion, click~~
 8. UI(start,restart, show help, control tips)
 9. scores (count time) and can be saved
 10. Count flag, all, nums cubes by GUI
@@ -37,8 +46,8 @@ Tim's Mines Sweeper (3D)
 ~~means the bugs has already be fixed~~
 
 ###Have Cool Ideas || Find Bugs?
-1. count the near 27 cubes not 6 cubes now
-2. maybe make cube matrix not a cube but a cuboid
+1. count the near 27 cubes not 6 cubes now to make the game more playable
+2. maybe make cube matrix not a cube but a cuboid with 3 rows in z axis
 
 Contact me, we achieved / fix it together.
 
