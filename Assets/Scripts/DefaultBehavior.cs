@@ -81,12 +81,12 @@ public class DefaultBehavior : MonoBehaviour {
             if((!flagShowAlready )){
                 //Debug.Log("right click 1");
                 this.GetComponent<Renderer>().material.mainTexture=flag;
-                
+                gameController.gc.minesTextNum--;
                 flagShowAlready=true;
             }else{
                 //Debug.Log("right click twice");
                 this.GetComponent<Renderer>().material.mainTexture=defaultTexture;
-                
+                gameController.gc.minesTextNum++;
                 flagShowAlready=false;
             }
             
@@ -159,7 +159,10 @@ public class DefaultBehavior : MonoBehaviour {
 //                    Destroy(cubesList[nearingSpcaeCubesList[j]]);
 //
 //                }
+                gameController.gc.spacesTextNum--;
                 Destroy(this.gameObject,0.8f);
+
+                gameController.gc.cubesTextNum--;
 
                 
     		}

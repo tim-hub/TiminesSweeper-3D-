@@ -24,6 +24,12 @@ public class gameController : MonoBehaviour {
     public float runningTime=0;
 
 	public Text scoreText;
+    public Text minesText;
+    public int minesTextNum;
+    public Text spaceCubesText;
+    public int spacesTextNum;
+    public Text cubesText;
+    public int cubesTextNum;
     public Canvas canvasESCMenu;
 	#endregion 
 
@@ -50,6 +56,7 @@ public class gameController : MonoBehaviour {
         canvasESCMenu.enabled=false;
 
 
+
 		rows=(int)(Mathf.Pow(numOfCubes,1f/3));  //use 1f/3 not 1/3
 		cubesArray=CreateCubesArray(numOfCubes);
 
@@ -74,6 +81,10 @@ public class gameController : MonoBehaviour {
 
 		CreateMap(cubesArray,minesIndex,numCubesIndex);
 
+        minesTextNum=numOfMines;
+        spacesTextNum=spaceCubesIndex.Length;
+        cubesTextNum=numOfCubes;
+
 	}
 
 
@@ -82,6 +93,9 @@ public class gameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        minesText.text="MINES: "+minesTextNum;
+        spaceCubesText.text="SPACE CUBES: "+spacesTextNum;
+        cubesText.text="ALL CUBES: "+cubesTextNum;
 
         if(!startGame){
             Time.timeScale=0;
@@ -343,4 +357,19 @@ public class gameController : MonoBehaviour {
 	
 
 	#endregion
+
+
+    #region UI
+    public void ClickResume(){
+        GetComponents<AudioSource>()[1].Play();
+        startGame=true;
+        escapeOnce=false;
+        canvasESCMenu.enabled=false;
+    }
+    
+    public void ClickLeave(){
+        Application.LoadLevel("start");
+    }
+
+    #endregion
 }
