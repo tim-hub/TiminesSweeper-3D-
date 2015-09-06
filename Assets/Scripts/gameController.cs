@@ -21,7 +21,7 @@ public class gameController : MonoBehaviour {
     public int[] spaceCubesIndex;
 
     public bool startGame;
-    public float runningTime=0;
+    
 
 	public Text scoreText;
     public Text minesText;
@@ -31,6 +31,7 @@ public class gameController : MonoBehaviour {
     public Text cubesText;
     public int cubesTextNum;
     public Canvas canvasESCMenu;
+
 	#endregion 
 
 
@@ -42,6 +43,8 @@ public class gameController : MonoBehaviour {
 	private int rows;
 
     bool escapeOnce=false;
+
+	float runningTime=0f;
 
 	#endregion
 
@@ -104,8 +107,8 @@ public class gameController : MonoBehaviour {
         }
 
 
-
-        scoreText.text="TIME: "+(Time.time).ToString("0.0");
+		runningTime+= Time.deltaTime;
+        scoreText.text="TIME: "+(runningTime).ToString("0.0");
 
 
         if(Input.GetMouseButtonDown(0)||Input.GetMouseButtonDown(1)){
@@ -361,6 +364,7 @@ public class gameController : MonoBehaviour {
 
     #region UI
     public void ClickResume(){
+		Debug.Log("Clicl Resume Button");
         GetComponents<AudioSource>()[1].Play();
         startGame=true;
         escapeOnce=false;
@@ -368,6 +372,7 @@ public class gameController : MonoBehaviour {
     }
     
     public void ClickLeave(){
+		Debug.Log("Click Leave Button");
         Application.LoadLevel("start");
     }
 
