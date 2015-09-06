@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/_Scenes/start.unity
   - enabled: 1
     path: Assets/_Scenes/main.unity
+  - enabled: 1
+    path: Assets/_Scenes/lost.unity

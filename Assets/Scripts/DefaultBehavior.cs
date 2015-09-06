@@ -68,12 +68,10 @@ public class DefaultBehavior : MonoBehaviour {
     
     }
 
-    public void ClickDefaultCube(){
-       
-        
 
-    }
-
+    /// <summary>
+    /// check right click
+    /// </summary>
 
     void OnMouseOver(){
         if(startGame&&Input.GetMouseButtonDown(1)&&(!numTextureAlready)){
@@ -95,7 +93,9 @@ public class DefaultBehavior : MonoBehaviour {
         
     } 
         
-
+    /// <summary>
+    /// left click, show mine, spcae or a number
+    /// </summary>
 
 	void OnMouseDown () {
 		Debug.Log (this.transform.localPosition);
@@ -109,8 +109,8 @@ public class DefaultBehavior : MonoBehaviour {
     			go.transform.parent=newParentObject.transform;
                 Destroy(go,1f);
 
-                GameObject exp=Instantiate(explosionAnim,this.transform.position,new Quaternion(0,0,0,0)) as GameObject;
-                exp.transform.parent=newParentObject.transform;
+                StartCoroutine(WaitExpAndLost());
+
 
                    
 
@@ -225,7 +225,11 @@ public class DefaultBehavior : MonoBehaviour {
         return tmpList;
     }
 
-
+    /// <summary>
+    /// Checks the index of the in spcae cubes.
+    /// </summary>
+    /// <returns><c>true</c>, if in spcae cubes index was checked, <c>false</c> otherwise.</returns>
+    /// <param name="index">Index.</param>
     bool CheckInSpcaeCubesIndex(int index){
         if (index<0||index>=numOfCubes){
             return false;
@@ -243,7 +247,12 @@ public class DefaultBehavior : MonoBehaviour {
 
 
 
-	//the index in array?
+	/// <summary>
+    /// Checks the index of the in.
+    /// </summary>
+    /// <returns><c>true</c>, if in index was checked, <c>false</c> otherwise.</returns>
+    /// <param name="array">Array.</param>
+    /// <param name="index">Index.</param>
 	bool CheckInIndex(int[] array, int index){
 		for(int i=0;i<array.Length;i++){
 			//print (array[i]==index);
@@ -287,8 +296,22 @@ public class DefaultBehavior : MonoBehaviour {
 	
 	}
 
+    /// <summary>
+    /// Waits the exp and lost.
+    /// </summary>
+    /// <returns>The exp and lost.</returns>
+    IEnumerator WaitExpAndLost(){
+
+        GameObject exp=Instantiate(explosionAnim,this.transform.position,new Quaternion(0,0,0,0)) as GameObject;
 
 
+        exp.transform.parent=newParentObject.transform;
+
+        gameController.gc.stopGame=true;
+
+        yield return new WaitForSeconds(3f);
+
+    }
 
 
 	#endregion

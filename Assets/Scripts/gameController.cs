@@ -10,6 +10,8 @@ public class gameController : MonoBehaviour {
 	//link the objects
 	public GameObject defaultCube;
 	public GameObject parentObeject;
+    public GameObject youWin;
+    public GameObject youLost;
     public List<GameObject> cubesList;
 	public int numOfCubes=27; //the sum of cubes
 	public int numOfMines=5; //sum of mines
@@ -35,6 +37,7 @@ public class gameController : MonoBehaviour {
 
     public Text highestScoreText;
 
+    public float highestScore=0f;
 	#endregion 
 
 
@@ -46,10 +49,11 @@ public class gameController : MonoBehaviour {
 	private int rows;
 
     bool escapeOnce=false;
+    bool minesClean=false;// whether mines are clean
 
 	float runningTime=0f;
 
-    float highestScore=0f;
+
     float basicScore=0f;
 
 	#endregion
@@ -62,8 +66,20 @@ public class gameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         gc=this;
+        //when start game, did not show the esc menu
         canvasESCMenu.enabled=false;
 
+        //us this to set the default highest score
+        if(PlayerPrefs.GetFloat("highestScore")!=null){
+            highestScore=PlayerPrefs.GetFloat("highestScore");
+        }else{
+            Debug.Log("First time to store a score");
+            highestScore=0;
+        }
+
+
+        youWin.GetComponent<MeshRenderer>().enabled=false;
+        youLost.GetComponent<MeshRenderer>().enabled=false;
 
 
 		rows=(int)(Mathf.Pow(numOfCubes,1f/3));  //use 1f/3 not 1/3
@@ -100,10 +116,28 @@ public class gameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //when stop the game
+        if (stopGame){
+            
+
+            youLost.GetComponent<MeshRenderer>().enabled=true;
+            stopGame=false;
+            StartCoroutine(StopGame());
+
+        }
+
+        if(minesClean){
+            stopGame=true;
+            youWin.GetComponent<MeshRenderer>().enabled=true;
+        }
+
+
+        //ui text show
         minesText.text="MINES: "+minesTextNum;
         spaceCubesText.text="SPACE CUBES: "+spacesTextNum;
         cubesText.text="ALL CUBES: "+cubesTextNum;
-        highestScoreText.text="SCORE: "+highestScore;
+        highestScoreText.text="BEST: "+highestScore.ToString("0.0");;
+
 
         if(!startGame){
             Time.timeScale=0;
@@ -118,7 +152,7 @@ public class gameController : MonoBehaviour {
 
         if(Input.GetMouseButtonDown(0)||Input.GetMouseButtonDown(1)){
             GetComponents<AudioSource>()[0].Play();
-            SetHighestScore(12);
+            //SetHighestScore(12);
         }
 
         if(Input.GetKeyDown(KeyCode.Escape) ){
@@ -137,6 +171,9 @@ public class gameController : MonoBehaviour {
             }
         }
 
+
+
+
 	}
 
 	#endregion
@@ -145,6 +182,12 @@ public class gameController : MonoBehaviour {
 
 
 	#region UserMethods
+    /// <summary>
+    /// Creates the matrix
+    /// </summary>
+    /// <param name="cubesArray">Cubes array.</param>
+    /// <param name="mines">Mines.</param>
+    /// <param name="nums">Nums.</param>
 	void CreateMap(Vector3[] cubesArray,int[] mines, int[] nums){
 		GameObject go;
 		//int numCount=0;
@@ -157,7 +200,11 @@ public class gameController : MonoBehaviour {
 		
 
 	}
-
+    /// <summary>
+    /// Randoms the mines position.
+    /// </summary>
+    /// <returns>The mines position.</returns>
+    /// <param name="sum">Sum.</param>
     int[] RandomMinesPosition(int sum){
 
         int[] arr = new int[sum];
@@ -201,6 +248,10 @@ public class gameController : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Gets the space cubes index
+    /// </summary>
+    /// <returns>The space cubes.</returns>
     int[] GetSpaceCubes(){
         List<int> tmpList=new List<int>();
         for (int i=0;i<numOfCubes;i++){
@@ -218,6 +269,12 @@ public class gameController : MonoBehaviour {
         return tmpArr;
     }
 
+    /// <summary>
+    /// check the index whethe is in the array
+    /// </summary>
+    /// <returns><c>true</c>, if index was arrayed, <c>false</c> otherwise.</returns>
+    /// <param name="arr">Arr.</param>
+    /// <param name="index">Index.</param>
     bool ArrayIndex(int[] arr, int index){
         for(int i=0;i<arr.Length;i++){
 
@@ -228,6 +285,11 @@ public class gameController : MonoBehaviour {
         return false;
     }
 
+    /// <summary>
+    /// Creates the cubes array.
+    /// </summary>
+    /// <returns>The cubes array.</returns>
+    /// <param name="num">Number.</param>
 	private Vector3[] CreateCubesArray(int num){
 		int i =0;
 
@@ -315,7 +377,11 @@ public class gameController : MonoBehaviour {
 //
 //		
 //	}
-
+    /// <summary>
+    /// Gets the index of the mines.
+    /// </summary>
+    /// <returns>The mines index.</returns>
+    /// <param name="minesArray">Mines array.</param>
 	int[] GetMinesIndex( Vector3[] minesArray){
 		int[] minesIndex=new int[minesArray.Length];
 		
@@ -330,7 +396,11 @@ public class gameController : MonoBehaviour {
 		
 		
 	}
-	
+	/// <summary>
+    /// Vector3s to int.
+    /// </summary>
+    /// <returns>The to int.</returns>
+    /// <param name="cubePosition">Cube position.</param>
 	public int Vector3ToInt(Vector3 cubePosition){
 		
 		
@@ -347,37 +417,58 @@ public class gameController : MonoBehaviour {
 		//(-2,
 		
 	}
-
+    /// <summary>
+    /// Ints to vector.
+    /// </summary>
+    /// <returns>The to vector.</returns>
+    /// <param name="index">Index.</param>
     public Vector3 IntToVector(int index){
     
         return new Vector3(index/(rows*rows)*distance-distance,(index%(rows*rows))/rows*distance-distance,
                            (index%(rows*rows))%rows*distance-distance);
     }
-
+    /// <summary>
+    /// Shows the array. this is a test methond
+    /// </summary>
+    /// <param name="array">Array.</param>
     void ShowArray(int[] array){
         foreach(int a in array){
             Debug.Log(a);
         }
     }
 
-
+    /// <summary>
+    /// Sets the highest score.
+    /// </summary>
+    /// <param name="score">Score.</param>
     void SetHighestScore(float score){
-        PlayerPrefs.SetFloat("score",score);
+        PlayerPrefs.SetFloat("lastScore",score);
 //        Debug.Log("already set highest score");
 //        Debug.Log(PlayerPrefs.GetFloat("score"));
-        if(score>0 &&PlayerPrefs.GetFloat("score")!=null &&score<PlayerPrefs.GetFloat("score")){
-            PlayerPrefs.SetFloat("score",score);
+        if(score>0  &&PlayerPrefs.GetFloat("highestScore",0)!=0 && score<PlayerPrefs.GetFloat("highestScore")){
+            PlayerPrefs.SetFloat("highestScore",score);
 
         }
+
+
     }
-
-
-	
-
-	#endregion
+    /// <summary>
+    /// Stops the game.
+    /// </summary>
+    /// <returns>The game.</returns>
+    IEnumerator StopGame(){
+        yield return new WaitForSeconds(1.5f);
+        highestScore=runningTime;
+        SetHighestScore(highestScore);
+        startGame=false;
+    }
+    
+    
+    #endregion
 
 
     #region UI
+
     public void ClickResume(){
 		Debug.Log("Clicl Resume Button");
         GetComponents<AudioSource>()[1].Play();
