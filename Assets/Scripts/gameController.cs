@@ -21,6 +21,7 @@ public class gameController : MonoBehaviour {
     public int[] spaceCubesIndex;
 
     public bool startGame;
+    public bool stopGame;
     
 
 	public Text scoreText;

@@ -788,6 +788,7 @@ MonoBehaviour:
   numCubesIndex: 
   spaceCubesIndex: 
   startGame: 1
+  stopGame: 0
   scoreText: {fileID: 995926632}
   minesText: {fileID: 1362844234}
   minesTextNum: 0
@@ -796,6 +797,7 @@ MonoBehaviour:
   cubesText: {fileID: 142766378}
   cubesTextNum: 0
   canvasESCMenu: {fileID: 212514720}
+  highestScoreText: {fileID: 637116630}
 --- !u!82 &391632232
 AudioSource:
   m_ObjectHideFlags: 0
