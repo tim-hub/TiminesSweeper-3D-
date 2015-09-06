@@ -27,8 +27,10 @@ Tim's Mines Sweeper (3D)
 7. ~~click esc ro pause and return to game~~
 7. ~~esc to show the menu, resume,leave,~~control,setting,
 8. ~~UI(start,quit,~~ show help, control tips)
-9. scores (count time) and can save the highest
-10. Count flag, all, nums cubes by GUI
+9. ~~scores (count time) and can save the highest~~
+10. ~~Count flag, all, space cubes by GUI~~
+10. When win/lost, show a tip, to restart or exit
+10. best score store
 10. config the number of cubes and mines
 11. share to friends (by email fb or others)
 12. make mouse like a space man

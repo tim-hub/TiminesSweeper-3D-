@@ -62,7 +62,7 @@ public class DefaultBehavior : MonoBehaviour {
 
         if(!startGame){
             Time.timeScale=0;
-        }else{
+        }else if(!gameController.gc.stopGame){
             Time.timeScale=1;
         }
     
@@ -304,7 +304,7 @@ public class DefaultBehavior : MonoBehaviour {
     /// Waits the exp and lost.
     /// </summary>
     /// <returns>The exp and lost.</returns>
-    IEnumerator WaitExpAndLost(){
+    IEnumerator WaitExpAndLost(){ //not good
 
         GameObject exp=Instantiate(explosionAnim,this.transform.position,new Quaternion(0,0,0,0)) as GameObject;
 

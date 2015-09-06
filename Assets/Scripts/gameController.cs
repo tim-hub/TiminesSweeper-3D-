@@ -94,9 +94,10 @@ public class gameController : MonoBehaviour {
 
 
 		//minesIndex=GetMinesIndex(minesArray);
-        minesIndex=new int[] { 0, 2, 13,14,26 };
 
-        //minesIndex=RandomMinesPosition(5);
+        //minesIndex=new int[] { 0, 2, 1,3,4 };
+        minesIndex=RandomMinesPosition(5);
+
 
 		numCubesIndex=GetNumCubesIndex(minesIndex);
 
@@ -119,10 +120,11 @@ public class gameController : MonoBehaviour {
 	void Update () {
         //when stop the game
         if (stopGame){
+            highestScore=runningTime;
+            SetHighestScore(highestScore);
             
-
             youLost.GetComponent<MeshRenderer>().enabled=true;
-            stopGame=false;
+
             StartCoroutine(StopGame());
 
         }
@@ -133,7 +135,7 @@ public class gameController : MonoBehaviour {
         if(minesClean){
             stopGame=true;
             youWin.GetComponent<MeshRenderer>().enabled=true;
-            stopGame=false;
+
             StartCoroutine(StopGame());
         }
 
@@ -145,9 +147,9 @@ public class gameController : MonoBehaviour {
         highestScoreText.text="BEST: "+highestScore.ToString("0.0");;
 
 
-        if(!startGame){
+        if(!startGame ){
             Time.timeScale=0;
-        }else{
+        }else if(!stopGame){
             Time.timeScale=1;
         }
 
@@ -161,7 +163,7 @@ public class gameController : MonoBehaviour {
             //SetHighestScore(12);
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape) ){
+        if(!stopGame&&Input.GetKeyDown(KeyCode.Escape) ){
             Debug.Log("Press escape");
             if(escapeOnce==false){
                 startGame=false;
@@ -464,8 +466,7 @@ public class gameController : MonoBehaviour {
     /// <returns>The game.</returns>
     IEnumerator StopGame(){
         yield return new WaitForSeconds(1.5f);
-        highestScore=runningTime;
-        SetHighestScore(highestScore);
+
         startGame=false;
     }
     
