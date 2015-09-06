@@ -38,6 +38,7 @@ public class gameController : MonoBehaviour {
     public Text highestScoreText;
 
     public float highestScore=0f;
+    public int numOfMinesMined=0;
 	#endregion 
 
 
@@ -125,10 +126,15 @@ public class gameController : MonoBehaviour {
             StartCoroutine(StopGame());
 
         }
+        if (numOfMinesMined==numOfMines){
+            minesClean=true;
+        }
 
         if(minesClean){
             stopGame=true;
             youWin.GetComponent<MeshRenderer>().enabled=true;
+            stopGame=false;
+            StartCoroutine(StopGame());
         }
 
 

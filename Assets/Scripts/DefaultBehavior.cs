@@ -81,6 +81,10 @@ public class DefaultBehavior : MonoBehaviour {
                 this.GetComponent<Renderer>().material.mainTexture=flag;
                 gameController.gc.minesTextNum--;
                 flagShowAlready=true;
+                if(CheckInIndex(minesIndex,gameController.gc.Vector3ToInt(this.transform.localPosition))){
+                    gameController.gc.numOfMinesMined++;
+                }
+
             }else{
                 //Debug.Log("right click twice");
                 this.GetComponent<Renderer>().material.mainTexture=defaultTexture;
