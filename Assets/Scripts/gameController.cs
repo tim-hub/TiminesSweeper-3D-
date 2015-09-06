@@ -37,7 +37,7 @@ public class gameController : MonoBehaviour {
 
     public Text highestScoreText;
 
-    public float highestScore=0f;
+    public float highestScore;
     public int numOfMinesMined=0;
 	#endregion 
 
