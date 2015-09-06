@@ -213,11 +213,11 @@ RectTransform:
   - {fileID: 681454298}
   - {fileID: 1971862176}
   - {fileID: 553671863}
+  - {fileID: 1600957526}
   - {fileID: 1380349748}
   - {fileID: 1744761706}
   - {fileID: 1416631400}
   - {fileID: 1363766508}
-  - {fileID: 1600957526}
   m_Father: {fileID: 220465853}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .380392194, g: .380392194, b: .380392194, a: 1}
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -847,7 +847,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 440576982}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 150, y: 160}
@@ -898,7 +898,7 @@ GameObject:
   - 114: {fileID: 1380349749}
   - 95: {fileID: 1380349752}
   m_Layer: 5
-  m_Name: ButtonSetting
+  m_Name: ButtonAbout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -916,7 +916,7 @@ RectTransform:
   m_Children:
   - {fileID: 631701128}
   m_Father: {fileID: 440576982}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: -90}
@@ -975,7 +975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .380392164, g: .380392164, b: .380392164, a: 1}
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -1035,7 +1035,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 440576982}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 200, y: -40}
@@ -1181,7 +1181,7 @@ GameObject:
   - 114: {fileID: 1600957528}
   - 95: {fileID: 1600957527}
   m_Layer: 5
-  m_Name: ButtonQuit
+  m_Name: ButtonSetting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1199,7 +1199,7 @@ RectTransform:
   m_Children:
   - {fileID: 797871880}
   m_Father: {fileID: 440576982}
-  m_RootOrder: 7
+  m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: -60}
@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .380392164, g: .380392164, b: .380392164, a: 1}
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -1303,7 +1303,7 @@ GameObject:
   - 114: {fileID: 1744761707}
   - 95: {fileID: 1744761710}
   m_Layer: 5
-  m_Name: ButtonAbout
+  m_Name: ButtonQuit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1321,7 +1321,7 @@ RectTransform:
   m_Children:
   - {fileID: 1055895282}
   m_Father: {fileID: 440576982}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: -120}

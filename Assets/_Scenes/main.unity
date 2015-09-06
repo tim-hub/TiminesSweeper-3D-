@@ -625,7 +625,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &330250934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -788,7 +788,6 @@ MonoBehaviour:
   numCubesIndex: 
   spaceCubesIndex: 
   startGame: 1
-  runningTime: 0
   scoreText: {fileID: 995926632}
   minesText: {fileID: 1362844234}
   minesTextNum: 0
