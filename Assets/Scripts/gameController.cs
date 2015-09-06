@@ -32,6 +32,8 @@ public class gameController : MonoBehaviour {
     public int cubesTextNum;
     public Canvas canvasESCMenu;
 
+    public Text highestScoreText;
+
 	#endregion 
 
 
@@ -45,6 +47,9 @@ public class gameController : MonoBehaviour {
     bool escapeOnce=false;
 
 	float runningTime=0f;
+
+    float highestScore=0f;
+    float basicScore=0f;
 
 	#endregion
 
@@ -78,15 +83,13 @@ public class gameController : MonoBehaviour {
 		numCubesIndex=GetNumCubesIndex(minesIndex);
 
         spaceCubesIndex=GetSpaceCubes();
-       
-
-
 
 		CreateMap(cubesArray,minesIndex,numCubesIndex);
 
         minesTextNum=numOfMines;
         spacesTextNum=spaceCubesIndex.Length;
         cubesTextNum=numOfCubes;
+
 
 	}
 
@@ -99,6 +102,7 @@ public class gameController : MonoBehaviour {
         minesText.text="MINES: "+minesTextNum;
         spaceCubesText.text="SPACE CUBES: "+spacesTextNum;
         cubesText.text="ALL CUBES: "+cubesTextNum;
+        highestScoreText.text="SCORE: "+highestScore;
 
         if(!startGame){
             Time.timeScale=0;
@@ -113,6 +117,7 @@ public class gameController : MonoBehaviour {
 
         if(Input.GetMouseButtonDown(0)||Input.GetMouseButtonDown(1)){
             GetComponents<AudioSource>()[0].Play();
+            SetHighestScore(12);
         }
 
         if(Input.GetKeyDown(KeyCode.Escape) ){
@@ -355,6 +360,15 @@ public class gameController : MonoBehaviour {
     }
 
 
+    void SetHighestScore(float score){
+        PlayerPrefs.SetFloat("score",score);
+//        Debug.Log("already set highest score");
+//        Debug.Log(PlayerPrefs.GetFloat("score"));
+        if(score>0 &&PlayerPrefs.GetFloat("score")!=null &&score<PlayerPrefs.GetFloat("score")){
+            PlayerPrefs.SetFloat("score",score);
+
+        }
+    }
 
 
 	
