@@ -36,7 +36,7 @@ public class sceneController : MonoBehaviour {
 		//right button rotate
 		if (Input.GetMouseButton(1)){
 			
-			
+            Debug.Log("Right Mouse Button");
 			
             parentObeject.transform.Rotate(new Vector3(0f,-Input.GetAxis("Mouse X"),0f).normalized
 			                               *rotateSpeed,Space.Self);
