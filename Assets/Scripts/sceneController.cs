@@ -40,7 +40,7 @@ public class sceneController : MonoBehaviour {
 			
             parentObeject.transform.Rotate(new Vector3(0f,-Input.GetAxis("Mouse X"),0f).normalized
 			                               *rotateSpeed,Space.Self);
-			
+            Debug.Log(Input.GetAxis("Mouse X"));
 			//camera.transform.position=parentObeject.transform.position+distance;
 		}
 		

@@ -124,8 +124,9 @@ public class gameController : MonoBehaviour {
             SetHighestScore(highestScore);
             
             youLost.GetComponent<MeshRenderer>().enabled=true;
-
-            StartCoroutine(StopGame());
+            Invoke("Restart",3);
+            //Time.timeScale=0.25f;
+            //StartCoroutine(StopGame());
 
         }
         if (numOfMinesMined==numOfMines){
@@ -135,8 +136,9 @@ public class gameController : MonoBehaviour {
         if(minesClean){
             stopGame=true;
             youWin.GetComponent<MeshRenderer>().enabled=true;
-
-            StartCoroutine(StopGame());
+            Invoke("Restart",3);
+            //Time.timeScale=0.25f;
+            //StartCoroutine(StopGame());
         }
 
 
@@ -186,7 +188,14 @@ public class gameController : MonoBehaviour {
 
 	#endregion
 
+    #region startStop
+    void Restart(){
+        Application.LoadLevel(Application.loadedLevel);
+    }
 
+
+
+    #endregion
 
 
 	#region UserMethods

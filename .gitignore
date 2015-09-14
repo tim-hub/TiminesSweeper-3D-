@@ -30,6 +30,3 @@ obj/
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-#git
-.gitignore
