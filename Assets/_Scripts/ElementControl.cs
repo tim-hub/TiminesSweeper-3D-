@@ -11,7 +11,7 @@ IPointerExitHandler{
     public LayerMask ElementMask;
 
 
-    private bool _isAMine;
+    private bool _isAMine=false;
     private bool _isSweepered;
     private bool _isFlagged;
 
@@ -31,7 +31,7 @@ IPointerExitHandler{
     void Awake(){
 
         _ownNumber = GetHowManyMinesNear();
-
+        //Debug.Log(gameObject.name + " " + _ownNumber);
 
     }
 
@@ -48,10 +48,12 @@ IPointerExitHandler{
 
     void Update(){
         #if UNITY_ANDROID
-
+        // long press
 
 
         #else
+        //the mouse input
+
 
         if (_isPointerOnTheObject){ //pointer on the object
 
@@ -73,18 +75,26 @@ IPointerExitHandler{
 
     void ClickToSendLine(Vector3 direction){
         // cast a ray along the direction
+        //to dig the elements near
 
         Ray ray = new Ray(transform.position, direction);
 
 
 
 
-        //set the texture by the own number
-        GetComponent<Renderer>().sharedMaterial.mainTexture;
+
+       
 
 
     }
 
+
+    void SetFlagTexture(){
+        Debug.Log(gameObject.name + "is setting the texture to a flag");
+
+
+
+    }
     int GetHowManyMinesNear(){ // to calculate how many mines near this element
         int ownNumber=0;
 
@@ -114,21 +124,54 @@ IPointerExitHandler{
 
     public void OnPointerClick(PointerEventData eventData){
 
+        Debug.Log("mouse pointer click on" + gameObject.name);
 
-
-
-        for (int i = 0; i < Directions.Count; i++)
+        if (_isAMine)
         {
-            ClickToSendLine(Directions [i]);
+            //you falied, and game over
 
+
+        } else if (_ownNumber == 0)
+        {
+            Debug.Log(gameObject.name + "is a blank element");
+
+
+
+
+            //this is a blank element, then send line to sweeper elements near 
+
+
+            for (int i = 0; i < Directions.Count; i++)
+            {
+                ClickToSendLine(Directions [i]);
+
+
+
+
+            }
+        } else
+        { //this is an element with mines near
+
+//            for (int i = 1; i++; i <= Directions.Count)
+//            {
+//                
+//
+//
+//
+//            }
+
+            //do not use a for loop, but use a string with a number inside to get the right texture
+
+            Debug.Log(gameObject.name + "has " + _ownNumber + " mines near");
 
 
 
         }
-
     }
 
     public void OnPointerEnter(PointerEventData eventData){
+        //Debug.Log("mouse pointer enter on" + gameObject.name);
+
 
         _isPointerOnTheObject = true;
 
