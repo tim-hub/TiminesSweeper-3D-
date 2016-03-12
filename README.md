@@ -1,9 +1,13 @@
 ## TiminesSweeper(3D)
 Tim's Mines Sweeper (3D)
 
+I am still work on the project, and want to do something different and refactor the project, not only for myself, but for the coursera capstone
+
+
 ###About
 - This is a mines sweeper 3d's core(2015/08/30)
 - Got a simple UI(20150903)
+
 
 ### How To Play
 1. click the cube to mine the cube
