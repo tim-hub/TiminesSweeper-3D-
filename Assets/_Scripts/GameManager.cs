@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
 
     public float DistanceOfTwoElements=2f;
     public int ElementsQuantity=64;
+    public int MinesQuantity=10;
 
 
     private List<Vector3> _elementPositions=new List<Vector3>(); 

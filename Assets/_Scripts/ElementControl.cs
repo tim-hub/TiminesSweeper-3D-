@@ -129,6 +129,7 @@ IPointerExitHandler{
         if (_isAMine)
         {
             //you falied, and game over
+            Debug.Log(gameObject.name +" is a mine, you failed!");
 
 
         } else if (_ownNumber == 0)
