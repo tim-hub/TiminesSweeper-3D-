@@ -13,11 +13,14 @@ public class GameManager : MonoBehaviour {
 
 
     public float DistanceOfTwoElements=2f;
+
+    //please insure that mines quantity is lessthan element quantity
     public int ElementsQuantity=64;
     public int MinesQuantity=10;
 
 
     private List<Vector3> _elementPositions=new List<Vector3>(); 
+    private List<int> _randomMinesPositionList = new List<int>();
 
     void Awake(){
 
@@ -35,10 +38,18 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         SetPositionMatrix();
+       
+
+        SetRandomMinesPosition();
+
+
 
         SetElementsPosition();
 	
 	}
+
+
+
 
     void SetPositionMatrix(){
         int cows =(int) Mathf.Pow(ElementsQuantity, (1f / 3));
@@ -64,15 +75,55 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void SetElementsPosition(){
-        foreach (Vector3 pos in _elementPositions)
-        {
+    void SetRandomMinesPosition(){
 
-            GameObject element = Instantiate(ElementObject, pos,Quaternion.identity)as GameObject;
-            element.transform.parent = ParentOfElements.transform;
+        int i=0;
+
+        while(i<MinesQuantity){
+            int tmp = Random.Range(0, ElementsQuantity-1);
+
+            if (!_randomMinesPositionList.Contains(tmp))
+            {
+
+                _randomMinesPositionList.Add(tmp);
+                i++;
+
+
+
+            }
+
 
 
         }
+
+
+
+    }
+
+    void SetElementsPosition(){
+       
+
+
+        //set position
+
+
+        for (int i = 0; i < _elementPositions.Count; i++)
+        {
+
+            GameObject element = Instantiate
+                (ElementObject, _elementPositions[i],Quaternion.identity)as GameObject;
+            element.transform.parent = ParentOfElements.transform;
+
+
+            if (_randomMinesPositionList.Contains(i))
+            {
+
+                element.GetComponent<ElementControl>().IsAMine = true;
+
+            }
+
+        }
+
 
 
 
@@ -86,6 +137,18 @@ public class GameManager : MonoBehaviour {
 
             Debug.Log(pos);
 
+
+        }
+
+
+    }
+
+    void PrintRandomMinesList(){
+
+        foreach (int i in _randomMinesPositionList)
+        {
+
+            Debug.Log(i);
 
         }
 
