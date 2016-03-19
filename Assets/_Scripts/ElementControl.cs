@@ -11,6 +11,11 @@ IPointerExitHandler{
     public LayerMask ElementMask;
 
 
+//    [Tooltip("Set the amount as the same as the directions, and keep the order")]
+    public List<GameObject> DifferentNumbers=new List<GameObject>();
+    public GameObject BlankElement;
+    public GameObject MineElement;
+
     private bool _isAMine=false;
     private bool _isSweepered;
     private bool _isFlagged;
@@ -42,6 +47,8 @@ IPointerExitHandler{
         _isFlagged = false;
 
         _isPointerOnTheObject = false;
+
+
 
 
     }
@@ -130,14 +137,18 @@ IPointerExitHandler{
         {
             //you falied, and game over
             Debug.Log(gameObject.name +" is a mine, you failed!");
-
+            Instantiate(MineElement, transform.position,
+                Quaternion.identity);
+            Destroy(this.gameObject);
 
         } else if (_ownNumber == 0)
         {
             Debug.Log(gameObject.name + "is a blank element");
 
 
-
+            Instantiate(BlankElement, transform.position,
+                Quaternion.identity);
+            Destroy(this.gameObject);
 
             //this is a blank element, then send line to sweeper elements near 
 
@@ -165,8 +176,9 @@ IPointerExitHandler{
 
             Debug.Log(gameObject.name + "has " + _ownNumber + " mines near");
 
-
-
+            Instantiate(DifferentNumbers [_ownNumber - 1], transform.position,
+                Quaternion.Euler(new Vector3(-90,0,0)));
+            Destroy(this.gameObject);
         }
     }
 
