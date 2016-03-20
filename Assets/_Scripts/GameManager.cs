@@ -52,18 +52,18 @@ public class GameManager : MonoBehaviour {
 
 
     void SetPositionMatrix(){
-        int cows =(int) Mathf.Pow(ElementsQuantity, (1f / 3));
+        int numberOfColumns =(int) Mathf.Pow(ElementsQuantity, (1f / 3));
 
-        for (int i = 0; i < cows; i++)
+        for (int i = 0; i < numberOfColumns; i++)
         {
 
-            for (int j = 0; j < cows; j++)
+            for (int j = 0; j < numberOfColumns; j++)
             {
-                for (int k = 0; k <= cows; k++)
+                for (int k = 0; k < numberOfColumns; k++)
                 {
 
                     _elementPositions.Add
-                    (new Vector3(i * DistanceOfTwoElements,
+                    (GetStartPosition()+new Vector3(i * DistanceOfTwoElements,
                         j * DistanceOfTwoElements,
                         k * DistanceOfTwoElements));
 
@@ -156,8 +156,17 @@ public class GameManager : MonoBehaviour {
     }
 
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    Vector3 GetStartPosition(){
+
+        int numberOfColumns =(int) Mathf.Pow(ElementsQuantity, (1f / 3));
+        Vector3 startPos=Vector2.zero;
+
+        float x = -(DistanceOfTwoElements)
+            * (numberOfColumns-1) / 2f;
+
+        startPos = new Vector3(x, x, x);
+
+        return startPos;
+
+    }
 }

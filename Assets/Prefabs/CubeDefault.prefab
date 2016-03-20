@@ -97,6 +97,8 @@ MonoBehaviour:
   ElementMask:
     serializedVersion: 2
     m_Bits: 256
+  RayLength: 2.1
+  WaitingSeconds: 0.5
   DifferentNumbers:
   - {fileID: 132216, guid: 263a99bb2c5fd824099317d8b7870823, type: 2}
   - {fileID: 132216, guid: 98f3fbc807ab7bc46bf1b675e7eace77, type: 2}
@@ -106,6 +108,7 @@ MonoBehaviour:
   - {fileID: 132216, guid: 6053592592f7cd74a82ddc4e524bddf4, type: 2}
   BlankElement: {fileID: 174048, guid: 89d778c221771634dab662c491ce7dc2, type: 2}
   MineElement: {fileID: 130626, guid: 8921b8043b06fde498043955356c6a4c, type: 2}
+  FlagMat: {fileID: 2100000, guid: 5e7ed672b83a89d4d80cdf56dc1de681, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -129,6 +132,14 @@ Prefab:
       propertyPath: MineElement
       value: 
       objectReference: {fileID: 130626, guid: 8921b8043b06fde498043955356c6a4c, type: 2}
+    - target: {fileID: 0}
+      propertyPath: WaitingSeconds
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: FlagMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 5e7ed672b83a89d4d80cdf56dc1de681, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 187332}

@@ -9,22 +9,34 @@ IPointerExitHandler{
     public List<Vector3> Directions =new List<Vector3>(); //to define the line's directions
     //for different shapes of objects
     public LayerMask ElementMask;
-
+    [Tooltip("bigger than 1 distance, less than 2 distances, distance configged in gamemanager")]
+    public float RayLength=2.1f;
+    public float WaitingSeconds=.5f;
 
 //    [Tooltip("Set the amount as the same as the directions, and keep the order")]
     public List<GameObject> DifferentNumbers=new List<GameObject>();
     public GameObject BlankElement;
     public GameObject MineElement;
+    public Material FlagMat;
 
     private bool _isAMine=false;
-    private bool _isSweepered;
-    private bool _isFlagged;
+    private bool _isABlank=false;
+    private bool _isSweepered=false;
+    private bool _isFlagged=false;
 
 
     private bool _isPointerOnTheObject;
 
 
     private int _ownNumber;
+
+    public bool IsABlank{
+
+        get {return _isABlank; }
+ 
+
+    }
+
 
     public bool IsAMine{
 
@@ -33,15 +45,36 @@ IPointerExitHandler{
 
 
     }
+
+    public bool IsSweepered{
+
+        get { return _isSweepered; }
+    }
+
+    public bool IsFlagged{
+
+        get{ return _isFlagged; }
+    }
+
     void Awake(){
 
-        _ownNumber = GetHowManyMinesNear();
         //Debug.Log(gameObject.name + " " + _ownNumber);
 
     }
 
 
     void Start(){
+        _ownNumber = GetHowManyMinesNear();
+
+        if (_ownNumber == 0)
+        {
+            _isABlank = true;
+
+
+        }
+
+
+
 
         _isSweepered = false;
         _isFlagged = false;
@@ -67,9 +100,9 @@ IPointerExitHandler{
 
             if (Input.GetMouseButtonDown(1)) //right click
             {
-                _isFlagged = true;
+                _isFlagged = !_isFlagged;
 
-
+                GetComponent<Renderer>().material=FlagMat;
             }
 
 
@@ -80,21 +113,62 @@ IPointerExitHandler{
 
     }
 
-    void ClickToSendLine(Vector3 direction){
+    void SweeperToSendLine(Vector3 direction){
+        //wait
+
+
         // cast a ray along the direction
         //to dig the elements near
 
+
+
         Ray ray = new Ray(transform.position, direction);
+        RaycastHit hit;
+
+
+        if (Physics.Raycast(ray, out hit, RayLength, ElementMask))
+        {
+            GameObject hitObject = hit.collider.gameObject;
+            ElementControl hitObjectElement = hitObject.GetComponent<ElementControl>();
+
+
+            if ((hitObjectElement!=null)&&(!(hitObjectElement.IsAMine))
+                && (!hitObjectElement.IsSweepered) &&(!hitObjectElement.IsFlagged))
+            {
 
 
 
+                // not a mine and not be sweepered
 
+                // sweeper the elements near
+                if (hitObjectElement.IsABlank)
+                {
+                    
+                    hitObjectElement.ClickOnABlank();
+
+
+                } else
+                {
+                    hitObjectElement.SweeperThisElement();
+
+
+                }
+
+            }
+
+        }
 
        
 
 
     }
 
+
+//    IEnumerator WaitForASecond(){
+//
+//        yield return new WaitForSeconds(WaitingSeconds);
+//
+//    }
 
     void SetFlagTexture(){
         Debug.Log(gameObject.name + "is setting the texture to a flag");
@@ -113,7 +187,7 @@ IPointerExitHandler{
             RaycastHit hit;
 
 
-            if (Physics.Raycast(ray, out hit, 100f, ElementMask))
+            if (Physics.Raycast(ray, out hit, RayLength, ElementMask))
             {
             
 
@@ -129,40 +203,69 @@ IPointerExitHandler{
     }
 
 
-    public void OnPointerClick(PointerEventData eventData){
+    void SweeperThisElement(){
+        Debug.Log(gameObject.name + "has " + _ownNumber + " mines near");
 
-        Debug.Log("mouse pointer click on" + gameObject.name);
+        GameObject go =Instantiate(DifferentNumbers [_ownNumber - 1], transform.position,
+            Quaternion.Euler(new Vector3(-90,0,0))) as GameObject;
 
-        if (_isAMine)
+        go.transform.parent = this.gameObject.transform.parent;
+        Destroy(this.gameObject);
+
+    }
+
+    void ClickOnABlank(){
+
+        Debug.Log(gameObject.name + "is a blank element");
+
+
+        GameObject go=Instantiate(BlankElement, transform.position,
+            Quaternion.identity) as GameObject;
+
+        go.transform.parent = this.gameObject.transform.parent;
+        Destroy(this.gameObject);
+
+
+        //to sweeper the near
+        for (int i = 0; i < Directions.Count; i++)
         {
-            //you falied, and game over
-            Debug.Log(gameObject.name +" is a mine, you failed!");
-            Instantiate(MineElement, transform.position,
-                Quaternion.identity);
-            Destroy(this.gameObject);
+           SweeperToSendLine(Directions [i]);
 
-        } else if (_ownNumber == 0)
+
+        }
+
+    }
+
+
+
+    public void OnPointerClick(PointerEventData eventData){ // add a if for whether it is a flag
+
+        if (!_isFlagged)
         {
-            Debug.Log(gameObject.name + "is a blank element");
 
+            _isSweepered = true;
+            Debug.Log("mouse pointer click on" + gameObject.name);
 
-            Instantiate(BlankElement, transform.position,
-                Quaternion.identity);
-            Destroy(this.gameObject);
-
-            //this is a blank element, then send line to sweeper elements near 
-
-
-            for (int i = 0; i < Directions.Count; i++)
+            if (_isAMine)
             {
-                ClickToSendLine(Directions [i]);
+                //you falied, and game over
+                Debug.Log(gameObject.name + " is a mine, you failed!");
+                GameObject go = Instantiate(MineElement, transform.position,
+                               Quaternion.identity) as GameObject;
+
+                go.transform.parent = this.gameObject.transform.parent;
+                Destroy(this.gameObject);
+
+            } else if (_ownNumber == 0)
+            {
+
+                ClickOnABlank();
+                //this is a blank element, then send line to sweeper elements near 
 
 
 
-
-            }
-        } else
-        { //this is an element with mines near
+            } else
+            { //this is an element with mines near
 
 //            for (int i = 1; i++; i <= Directions.Count)
 //            {
@@ -172,13 +275,12 @@ IPointerExitHandler{
 //
 //            }
 
-            //do not use a for loop, but use a string with a number inside to get the right texture
+                //do not use a for loop, but use a string with a number inside to get the right texture
 
-            Debug.Log(gameObject.name + "has " + _ownNumber + " mines near");
+                SweeperThisElement();
+           
 
-            Instantiate(DifferentNumbers [_ownNumber - 1], transform.position,
-                Quaternion.Euler(new Vector3(-90,0,0)));
-            Destroy(this.gameObject);
+            }
         }
     }
 

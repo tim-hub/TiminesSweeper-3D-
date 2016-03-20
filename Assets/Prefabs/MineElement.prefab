@@ -11,7 +11,7 @@ GameObject:
   - 33: {fileID: 3339204}
   - 23: {fileID: 2374002}
   - 114: {fileID: 11406110}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MineElement
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 4: {fileID: 490152}
   - 33: {fileID: 3337636}
   - 23: {fileID: 2332736}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mineHalf
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -161,6 +161,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalRotation.w
       value: .965925813
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
