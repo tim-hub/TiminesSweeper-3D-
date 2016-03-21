@@ -74,9 +74,6 @@ IPointerExitHandler{
 
         }
 
-
-
-
         _isSweepered = false;
         _isFlagged = false;
 
@@ -108,13 +105,13 @@ IPointerExitHandler{
                     GetComponent<Renderer>().material=FlagMat;
                     _isFlagged = true;
 
-                    _rightClick=false;
+                    StartCoroutine(SetRightClickFalse()); //use this corountine to avoid to cancle flag to sweeper
 
                 }else{
                     GetComponent<Renderer>().material=DefaultMat;
                     _isFlagged = false;
 
-                    _rightClick=false;
+                    StartCoroutine(SetRightClickFalse());
 
                 }
                
@@ -129,6 +126,15 @@ IPointerExitHandler{
         #endif
 
     }
+
+    IEnumerator SetRightClickFalse(){
+        yield return new WaitForSeconds(WaitingSeconds);
+
+        _rightClick = false;
+
+
+    }
+
 
     void SweeperToSendLine(Vector3 direction){
         //wait
