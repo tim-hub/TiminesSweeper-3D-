@@ -109,6 +109,7 @@ MonoBehaviour:
   BlankElement: {fileID: 174048, guid: 89d778c221771634dab662c491ce7dc2, type: 2}
   MineElement: {fileID: 130626, guid: 8921b8043b06fde498043955356c6a4c, type: 2}
   FlagMat: {fileID: 2100000, guid: 5e7ed672b83a89d4d80cdf56dc1de681, type: 2}
+  DefaultMat: {fileID: 2100000, guid: 7dc8a40b45c8dc043ae208c7159f76e6, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -140,6 +141,10 @@ Prefab:
       propertyPath: FlagMat
       value: 
       objectReference: {fileID: 2100000, guid: 5e7ed672b83a89d4d80cdf56dc1de681, type: 2}
+    - target: {fileID: 0}
+      propertyPath: DefaultMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 7dc8a40b45c8dc043ae208c7159f76e6, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 187332}

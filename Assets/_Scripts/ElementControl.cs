@@ -18,12 +18,13 @@ IPointerExitHandler{
     public GameObject BlankElement;
     public GameObject MineElement;
     public Material FlagMat;
+    public Material DefaultMat;
 
     private bool _isAMine=false;
     private bool _isABlank=false;
     private bool _isSweepered=false;
     private bool _isFlagged=false;
-
+    private bool _rightClick=false;
 
     private bool _isPointerOnTheObject;
 
@@ -100,9 +101,25 @@ IPointerExitHandler{
 
             if (Input.GetMouseButtonDown(1)) //right click
             {
-                _isFlagged = !_isFlagged;
+                _rightClick=true;
 
-                GetComponent<Renderer>().material=FlagMat;
+                if(!_isFlagged){
+
+                    GetComponent<Renderer>().material=FlagMat;
+                    _isFlagged = true;
+
+                    _rightClick=false;
+
+                }else{
+                    GetComponent<Renderer>().material=DefaultMat;
+                    _isFlagged = false;
+
+                    _rightClick=false;
+
+                }
+               
+
+               
             }
 
 
@@ -207,7 +224,8 @@ IPointerExitHandler{
         Debug.Log(gameObject.name + "has " + _ownNumber + " mines near");
 
         GameObject go =Instantiate(DifferentNumbers [_ownNumber - 1], transform.position,
-            Quaternion.Euler(new Vector3(-90,0,0))) as GameObject;
+            Quaternion.Euler(new Vector3(-90,0,0)+transform.rotation.eulerAngles)) 
+            as GameObject;
 
         go.transform.parent = this.gameObject.transform.parent;
         Destroy(this.gameObject);
@@ -220,7 +238,7 @@ IPointerExitHandler{
 
 
         GameObject go=Instantiate(BlankElement, transform.position,
-            Quaternion.identity) as GameObject;
+            this.transform.rotation) as GameObject;
 
         go.transform.parent = this.gameObject.transform.parent;
         Destroy(this.gameObject);
@@ -240,7 +258,7 @@ IPointerExitHandler{
 
     public void OnPointerClick(PointerEventData eventData){ // add a if for whether it is a flag
 
-        if (!_isFlagged)
+        if (!((_rightClick) ||(_isFlagged)))
         {
 
             _isSweepered = true;
@@ -251,7 +269,7 @@ IPointerExitHandler{
                 //you falied, and game over
                 Debug.Log(gameObject.name + " is a mine, you failed!");
                 GameObject go = Instantiate(MineElement, transform.position,
-                               Quaternion.identity) as GameObject;
+                               transform.rotation) as GameObject;
 
                 go.transform.parent = this.gameObject.transform.parent;
                 Destroy(this.gameObject);
@@ -267,15 +285,7 @@ IPointerExitHandler{
             } else
             { //this is an element with mines near
 
-//            for (int i = 1; i++; i <= Directions.Count)
-//            {
-//                
-//
-//
-//
-//            }
 
-                //do not use a for loop, but use a string with a number inside to get the right texture
 
                 SweeperThisElement();
            

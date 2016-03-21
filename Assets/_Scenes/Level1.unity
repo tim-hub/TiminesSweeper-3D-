@@ -188,7 +188,7 @@ MonoBehaviour:
   ParentObject: {fileID: 1895515570}
   Speed: 3
   RotateSpeed: 3
-  MinFov: 15
+  MinFov: 5
   MaxFov: 90
   SensitivityFox: 10
 --- !u!1 &987124873

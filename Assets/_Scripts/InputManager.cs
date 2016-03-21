@@ -20,7 +20,7 @@ public class InputManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+        fov = Camera.main.fieldOfView;
 	}
 	
 	// Update is called once per frame
@@ -41,10 +41,17 @@ public class InputManager : MonoBehaviour {
 
         if (Input.GetMouseButton(1)){
 
-            Debug.Log("Right Mouse Button");
+            Debug.Log("Middle Mouse Button");
 
-            ParentObject.transform.Rotate(new Vector3(0f,-Input.GetAxis("Mouse X"),0f).normalized
-                *RotateSpeed,Space.Self);
+           
+            ParentObject.transform.RotateAround(Vector3.zero,new Vector3(Input.GetAxis("Mouse Y"),
+                -Input.GetAxis("Mouse X"),0f),
+                RotateSpeed);
+
+
+//            ParentObject.transform.Rotate(new Vector3(-Input.GetAxis("Mouse Y"),
+//                -Input.GetAxis("Mouse X"),0f).normalized
+//                *RotateSpeed,Space.Self);
             Debug.Log(Input.GetAxis("Mouse X"));
             //camera.transform.position=parentObeject.transform.position+distance;
         }
