@@ -44,7 +44,7 @@ public class InputManager : MonoBehaviour {
             Debug.Log("Middle Mouse Button");
 
            
-            ParentObject.transform.RotateAround(Vector3.zero,new Vector3(Input.GetAxis("Mouse Y"),
+            ParentObject.transform.RotateAround(Vector3.zero,new Vector3(-Input.GetAxis("Mouse Y"),
                 -Input.GetAxis("Mouse X"),0f),
                 RotateSpeed);
 

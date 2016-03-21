@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3339204}
   - 23: {fileID: 2374002}
   - 114: {fileID: 11406110}
+  - 114: {fileID: 11470160}
   m_Layer: 8
   m_Name: MineElement
   m_TagString: Player
@@ -139,6 +140,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99de164fad4d174eaba118209a311c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11470160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79174cdd8f672848851665a4260fe7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exp: {fileID: 100000, guid: f4409e2a4fe27e842b083739e5deb8a6, type: 2}
+  mineLife: 2
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -166,6 +180,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: exp
+      value: 
+      objectReference: {fileID: 100000, guid: f4409e2a4fe27e842b083739e5deb8a6, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 130626}

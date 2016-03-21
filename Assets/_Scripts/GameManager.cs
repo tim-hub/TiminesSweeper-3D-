@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour {
     //arrange the mines and other elements in game manager
 
     public static GameManager instance;
-
+    public UIManager ui;
+    public GameObject GameOverUI;
     public GameObject ParentOfElements;
     public GameObject ElementObject;
 
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour {
     public int ElementsQuantity=64;
     public int MinesQuantity=10;
 
+
+    private int flagsCount = 0;
 
     private List<Vector3> _elementPositions=new List<Vector3>(); 
     private List<int> _randomMinesPositionList = new List<int>();
@@ -37,6 +40,13 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        ui.SetMines(MinesQuantity);
+        flagsCount = 0;
+        ui.SetFlags(flagsCount);
+
+        GameOverUI.SetActive(false);
+
         SetPositionMatrix();
        
 
@@ -167,6 +177,46 @@ public class GameManager : MonoBehaviour {
         startPos = new Vector3(x, x, x);
 
         return startPos;
+
+    }
+
+
+
+    public void FlagOne(){
+
+        flagsCount++;
+        ui.SetFlags(flagsCount);
+
+    }
+
+    public void UnFlagOne(){
+        flagsCount--;
+        ui.SetFlags(flagsCount);
+
+    }
+
+    public void GameOver(){
+
+        //show ui
+
+        GameOverUI.SetActive(true);
+
+
+    }
+
+    public void Restart(){
+        Application.LoadLevel(Application.loadedLevel);
+
+    }
+
+    public void Exit(){
+
+        Application.Quit();
+
+        #if UNITY_EDITOR
+        Debug.Log("quit");
+
+        #endif
 
     }
 }

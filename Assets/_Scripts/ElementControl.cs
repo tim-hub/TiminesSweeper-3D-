@@ -98,18 +98,25 @@ IPointerExitHandler{
 
             if (Input.GetMouseButtonDown(1)) //right click
             {
+
+                PlayClickAudio();
+
                 _rightClick=true;
 
                 if(!_isFlagged){
 
                     GetComponent<Renderer>().material=FlagMat;
                     _isFlagged = true;
+                    GameManager.instance.FlagOne();
+
+
 
                     StartCoroutine(SetRightClickFalse()); //use this corountine to avoid to cancle flag to sweeper
 
                 }else{
                     GetComponent<Renderer>().material=DefaultMat;
                     _isFlagged = false;
+                    GameManager.instance.UnFlagOne();
 
                     StartCoroutine(SetRightClickFalse());
 
@@ -135,6 +142,12 @@ IPointerExitHandler{
 
     }
 
+
+    void PlayClickAudio(){
+        Debug.Log("audio");
+        GetComponent<AudioSource>().Play();
+
+    }
 
     void SweeperToSendLine(Vector3 direction){
         //wait
@@ -230,8 +243,12 @@ IPointerExitHandler{
         Debug.Log(gameObject.name + "has " + _ownNumber + " mines near");
 
         GameObject go =Instantiate(DifferentNumbers [_ownNumber - 1], transform.position,
-            Quaternion.Euler(new Vector3(-90,0,0)+transform.rotation.eulerAngles)) 
+            transform.rotation*Quaternion.AngleAxis(90f,Vector3.left)) 
             as GameObject;
+
+
+
+       
 
         go.transform.parent = this.gameObject.transform.parent;
         Destroy(this.gameObject);
@@ -266,6 +283,8 @@ IPointerExitHandler{
 
         if (!((_rightClick) ||(_isFlagged)))
         {
+
+            PlayClickAudio();
 
             _isSweepered = true;
             Debug.Log("mouse pointer click on" + gameObject.name);
