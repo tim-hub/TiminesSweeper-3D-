@@ -41,7 +41,7 @@ public class InputManager : MonoBehaviour {
 
         if (Input.GetMouseButton(1)){
            
-            Debug.Log("Middle Mouse Button");
+            Debug.Log("Right Mouse Button Rotate");
 
            
             ParentObject.transform.RotateAround(Vector3.zero,new Vector3(-Input.GetAxis("Mouse Y"),
@@ -49,11 +49,6 @@ public class InputManager : MonoBehaviour {
                 RotateSpeed);
 
 
-//            ParentObject.transform.Rotate(new Vector3(-Input.GetAxis("Mouse Y"),
-//                -Input.GetAxis("Mouse X"),0f).normalized
-//                *RotateSpeed,Space.Self);
-            Debug.Log(Input.GetAxis("Mouse X"));
-            //camera.transform.position=parentObeject.transform.position+distance;
         }
 
         #endif

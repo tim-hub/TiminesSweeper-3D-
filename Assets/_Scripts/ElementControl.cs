@@ -13,6 +13,8 @@ IPointerExitHandler{
     public float RayLength=2.1f;
     public float WaitingSeconds=.5f;
 
+    public GameObject ShootingParticls;
+
 //    [Tooltip("Set the amount as the same as the directions, and keep the order")]
     public List<GameObject> DifferentNumbers=new List<GameObject>();
     public GameObject BlankElement;
@@ -59,12 +61,35 @@ IPointerExitHandler{
 
     void Awake(){
 
-        //Debug.Log(gameObject.name + " " + _ownNumber);
+
+
+
+
+
+    }
+
+    void OnEnable(){
+
+
 
     }
 
 
     void Start(){
+
+        InitThisElement();
+        _isSweepered = false;
+        _isFlagged = false;
+
+        _isPointerOnTheObject = false;
+
+
+
+
+    }
+
+
+    void InitThisElement(){
         _ownNumber = GetHowManyMinesNear();
 
         if (_ownNumber == 0)
@@ -73,13 +98,6 @@ IPointerExitHandler{
 
 
         }
-
-        _isSweepered = false;
-        _isFlagged = false;
-
-        _isPointerOnTheObject = false;
-
-
 
 
     }
@@ -139,7 +157,6 @@ IPointerExitHandler{
 
         _rightClick = false;
 
-
     }
 
 
@@ -153,10 +170,15 @@ IPointerExitHandler{
         //wait
 
 
-        // cast a ray along the direction
+        // cast a ray along the directions
         //to dig the elements near
 
+        //particle system
 
+
+
+
+        //below is use the ray
 
         Ray ray = new Ray(transform.position, direction);
         RaycastHit hit;
@@ -168,8 +190,10 @@ IPointerExitHandler{
             ElementControl hitObjectElement = hitObject.GetComponent<ElementControl>();
 
 
-            if ((hitObjectElement!=null)&&(!(hitObjectElement.IsAMine))
-                && (!hitObjectElement.IsSweepered) &&(!hitObjectElement.IsFlagged))
+            if ((hitObjectElement!=null)
+                &&(!(hitObjectElement.IsAMine))
+                && (!hitObjectElement.IsSweepered) 
+                &&(!hitObjectElement.IsFlagged))
             {
 
 
@@ -212,6 +236,10 @@ IPointerExitHandler{
 
 
     }
+
+
+
+
     int GetHowManyMinesNear(){ // to calculate how many mines near this element
         int ownNumber=0;
 
@@ -239,23 +267,21 @@ IPointerExitHandler{
     }
 
 
-    void SweeperThisElement(){
+    public void SweeperThisElement(){
         Debug.Log(gameObject.name + "has " + _ownNumber + " mines near");
+        //set the number texture
+
 
         GameObject go =Instantiate(DifferentNumbers [_ownNumber - 1], transform.position,
             transform.rotation*Quaternion.AngleAxis(90f,Vector3.left)) 
             as GameObject;
-
-
-
-       
 
         go.transform.parent = this.gameObject.transform.parent;
         Destroy(this.gameObject);
 
     }
 
-    void ClickOnABlank(){
+    public void ClickOnABlank(){
 
         Debug.Log(gameObject.name + "is a blank element");
 
@@ -280,6 +306,8 @@ IPointerExitHandler{
 
 
     public void OnPointerClick(PointerEventData eventData){ // add a if for whether it is a flag
+        InitThisElement();
+
 
         if (!((_rightClick) ||(_isFlagged) ))
         {
@@ -287,6 +315,9 @@ IPointerExitHandler{
             PlayClickAudio();
 
             _isSweepered = true;
+
+
+
             Debug.Log("mouse pointer click on" + gameObject.name);
 
             if (_isAMine)
