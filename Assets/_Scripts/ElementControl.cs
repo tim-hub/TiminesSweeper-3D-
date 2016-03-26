@@ -62,21 +62,21 @@ IPointerExitHandler{
     void Awake(){
 
 
-
+       
 
 
 
     }
 
     void OnEnable(){
-
+       
 
 
     }
 
 
     void Start(){
-
+        _ownNumber = GetHowManyMinesNear();
         InitThisElement();
         _isSweepered = false;
         _isFlagged = false;
@@ -90,7 +90,7 @@ IPointerExitHandler{
 
 
     void InitThisElement(){
-        _ownNumber = GetHowManyMinesNear();
+        
 
         if (_ownNumber == 0)
         {
@@ -223,21 +223,20 @@ IPointerExitHandler{
 
     }
 
-
-//    IEnumerator WaitForASecond(){
-//
-//        yield return new WaitForSeconds(WaitingSeconds);
-//
-//    }
-
-    void SetFlagTexture(){
-        Debug.Log(gameObject.name + "is setting the texture to a flag");
+    void SweeperToSendParticle(Vector3 direction){
 
 
+        Vector3 startPosition = transform.position + direction * transform.localScale.x / 2;
+        Quaternion startRotation = transform.rotation;
+
+        GameObject ps = Instantiate
+            (ShootingParticls, startPosition, startRotation)
+            as GameObject;
+
+        ps.transform.LookAt(transform.position + direction);
+        ps.transform.parent = transform.parent.transform;
 
     }
-
-
 
 
     int GetHowManyMinesNear(){ // to calculate how many mines near this element
@@ -266,6 +265,7 @@ IPointerExitHandler{
 
     }
 
+    #region public
 
     public void SweeperThisElement(){
         Debug.Log(gameObject.name + "has " + _ownNumber + " mines near");
@@ -296,8 +296,9 @@ IPointerExitHandler{
         //to sweeper the near
         for (int i = 0; i < Directions.Count; i++)
         {
-           SweeperToSendLine(Directions [i]);
+           //SweeperToSendLine(Directions [i]);
 
+            SweeperToSendParticle(Directions [i]);
 
         }
 
@@ -306,7 +307,7 @@ IPointerExitHandler{
 
 
     public void OnPointerClick(PointerEventData eventData){ // add a if for whether it is a flag
-        InitThisElement();
+       
 
 
         if (!((_rightClick) ||(_isFlagged) ))
@@ -320,22 +321,24 @@ IPointerExitHandler{
 
             Debug.Log("mouse pointer click on" + gameObject.name);
 
-            if (_isAMine)
-            {
-                //you falied, and game over
-                Debug.Log(gameObject.name + " is a mine, you failed!");
-                GameObject go = Instantiate(MineElement, transform.position,
-                               transform.rotation) as GameObject;
-
-                go.transform.parent = this.gameObject.transform.parent;
-                Destroy(this.gameObject);
-
-            } else if (_ownNumber == 0)
+            if (_isABlank)
             {
 
                 ClickOnABlank();
                 //this is a blank element, then send line to sweeper elements near 
 
+
+            } else if (_isAMine)
+            {
+
+               
+                //you falied, and game over
+                Debug.Log(gameObject.name + " is a mine, you failed!");
+                GameObject go = Instantiate(MineElement, transform.position,
+                    transform.rotation) as GameObject;
+
+                go.transform.parent = this.gameObject.transform.parent;
+                Destroy(this.gameObject);
 
 
             } else
@@ -365,4 +368,6 @@ IPointerExitHandler{
 
 
     }
+
+    #endregion
 }

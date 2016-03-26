@@ -3,38 +3,58 @@ using System.Collections;
 
 public class ParticleSystemCollisionManager : MonoBehaviour {
 
+    void Awake(){
+
+        Destroy(this.gameObject,3f);
+
+    }
+
     void OnParticleCollision(GameObject other) {
 
-        GameObject hitObject = other;
-        ElementControl hitObjectElement = hitObject.GetComponent<ElementControl>();
+        Debug.Log("Collision on " + other.name);
+
+       
+        Destroy(this.gameObject);
 
 
-        if ((hitObjectElement!=null)
-            &&(!(hitObjectElement.IsAMine))
-            && (!hitObjectElement.IsSweepered) 
-            &&(!hitObjectElement.IsFlagged))
+        if (other.layer == 8) //8 is elements layer
         {
+            
 
 
 
-            // not a mine and not be sweepered
+            GameObject hitObject = other;
 
-            // sweeper the elements near
-            if (hitObjectElement.IsABlank)
+
+            ElementControl hitObjectElement = hitObject.GetComponent<ElementControl>();
+
+
+            if ((hitObjectElement != null)
+            && (!(hitObjectElement.IsAMine))
+            && (!hitObjectElement.IsSweepered)
+            && (!hitObjectElement.IsFlagged))
             {
 
-                hitObjectElement.ClickOnABlank();
 
 
-            } else //a number, with mines near
-            {
-                hitObjectElement.SweeperThisElement();
+                // not a mine and not be sweepered
 
+                // sweeper the elements near
+                if (hitObjectElement.IsABlank)
+                {
+
+                    hitObjectElement.ClickOnABlank();
+
+
+                } else //a number, with mines near
+                {
+                    hitObjectElement.SweeperThisElement();
+
+
+                }
 
             }
 
         }
-
-
     }
 }
