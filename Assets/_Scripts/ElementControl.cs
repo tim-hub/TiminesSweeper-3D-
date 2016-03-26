@@ -96,7 +96,7 @@ IPointerExitHandler{
         if (_isPointerOnTheObject){ //pointer on the object
 
 
-            if (Input.GetMouseButtonDown(1)) //right click
+            if (Input.GetMouseButtonDown(1) ) //right click
             {
 
                 PlayClickAudio();
@@ -107,7 +107,7 @@ IPointerExitHandler{
 
                     GetComponent<Renderer>().material=FlagMat;
                     _isFlagged = true;
-                    GameManager.instance.FlagOne();
+                    GameManager.instance.FlagOne( _isAMine );
 
 
 
@@ -116,7 +116,7 @@ IPointerExitHandler{
                 }else{
                     GetComponent<Renderer>().material=DefaultMat;
                     _isFlagged = false;
-                    GameManager.instance.UnFlagOne();
+                    GameManager.instance.UnFlagOne( !_isAMine);
 
                     StartCoroutine(SetRightClickFalse());
 
@@ -281,7 +281,7 @@ IPointerExitHandler{
 
     public void OnPointerClick(PointerEventData eventData){ // add a if for whether it is a flag
 
-        if (!((_rightClick) ||(_isFlagged)))
+        if (!((_rightClick) ||(_isFlagged) ))
         {
 
             PlayClickAudio();

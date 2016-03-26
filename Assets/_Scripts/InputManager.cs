@@ -40,7 +40,7 @@ public class InputManager : MonoBehaviour {
         Camera.main.fieldOfView=fov;
 
         if (Input.GetMouseButton(1)){
-
+           
             Debug.Log("Middle Mouse Button");
 
            
@@ -55,6 +55,7 @@ public class InputManager : MonoBehaviour {
             Debug.Log(Input.GetAxis("Mouse X"));
             //camera.transform.position=parentObeject.transform.position+distance;
         }
+
         #endif
 
 

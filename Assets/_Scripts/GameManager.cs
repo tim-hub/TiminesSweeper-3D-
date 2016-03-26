@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour {
     public GameObject ParentOfElements;
     public GameObject ElementObject;
 
+    public bool MouseInputing=true;
+
 
     public float DistanceOfTwoElements=2f;
 
@@ -24,6 +26,8 @@ public class GameManager : MonoBehaviour {
 
     private List<Vector3> _elementPositions=new List<Vector3>(); 
     private List<int> _randomMinesPositionList = new List<int>();
+
+    private bool _flagRight=false;
 
     void Awake(){
 
@@ -44,6 +48,8 @@ public class GameManager : MonoBehaviour {
         ui.SetMines(MinesQuantity);
         flagsCount = 0;
         ui.SetFlags(flagsCount);
+
+        _flagRight = false;
 
         GameOverUI.SetActive(false);
 
@@ -179,21 +185,40 @@ public class GameManager : MonoBehaviour {
         return startPos;
 
     }
+    void CheckWin(){
+
+        if (flagsCount == MinesQuantity)
+        {
+            if (_flagRight)
+            {
+                Debug.Log("Win");
 
 
+            }
 
-    public void FlagOne(){
+
+        }
+
+    }
+
+
+    public void FlagOne(bool flagRight){
 
         flagsCount++;
         ui.SetFlags(flagsCount);
 
+        CheckWin();
+
     }
 
-    public void UnFlagOne(){
+    public void UnFlagOne(bool flagRight){
         flagsCount--;
         ui.SetFlags(flagsCount);
 
     }
+
+
+
 
     public void GameOver(){
 
