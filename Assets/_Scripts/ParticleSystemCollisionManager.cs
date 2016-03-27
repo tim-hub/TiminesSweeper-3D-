@@ -5,7 +5,7 @@ public class ParticleSystemCollisionManager : MonoBehaviour {
 
     void Awake(){
 
-        Destroy(this.gameObject,3f);
+        Destroy(this.gameObject,1f);
 
     }
 

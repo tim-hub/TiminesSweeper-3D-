@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
     //arrange the mines and other elements in game manager
 
     public static GameManager instance;
+    public string NextLevel;
+
     public UIManager ui;
     public GameObject GameOverUI;
+    public GameObject GameWinUI;
     public GameObject ParentOfElements;
     public GameObject ElementObject;
 
@@ -23,11 +27,12 @@ public class GameManager : MonoBehaviour {
 
 
     private int flagsCount = 0;
+    private int rightFlagsCount=0;
 
     private List<Vector3> _elementPositions=new List<Vector3>(); 
     private List<int> _randomMinesPositionList = new List<int>();
 
-    private bool _flagRight=false;
+
 
     void Awake(){
 
@@ -49,9 +54,10 @@ public class GameManager : MonoBehaviour {
         flagsCount = 0;
         ui.SetFlags(flagsCount);
 
-        _flagRight = false;
+
 
         GameOverUI.SetActive(false);
+        GameWinUI.SetActive(false);
 
         SetPositionMatrix();
        
@@ -189,12 +195,12 @@ public class GameManager : MonoBehaviour {
 
         if (flagsCount == MinesQuantity)
         {
-            if (_flagRight)
-            {
-                Debug.Log("Win");
 
 
-            }
+            Debug.Log("Win");
+
+            GameWinUI.SetActive(true);
+
 
 
         }
@@ -202,18 +208,26 @@ public class GameManager : MonoBehaviour {
     }
 
 
-    public void FlagOne(bool flagRight){
+    public void FlagOne(){
 
         flagsCount++;
         ui.SetFlags(flagsCount);
 
-        CheckWin();
+
 
     }
 
-    public void UnFlagOne(bool flagRight){
+    public void FlagRightOne(){
+        rightFlagsCount++;
+        CheckWin();
+    }
+
+    public void UnFlagOne(){
+
         flagsCount--;
         ui.SetFlags(flagsCount);
+
+
 
     }
 
@@ -230,7 +244,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Restart(){
-        Application.LoadLevel(Application.loadedLevel);
+        SceneManager.LoadScene(Application.loadedLevel);
 
     }
 
@@ -243,5 +257,12 @@ public class GameManager : MonoBehaviour {
 
         #endif
 
+    }
+
+    public void LoadNextLevel(){
+       
+
+
+        SceneManager.LoadScene(NextLevel);
     }
 }

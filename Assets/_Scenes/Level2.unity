@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68986652fe70ba4090f3229ee230354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextLevel: Level2
+  NextLevel: Level3
   ui: {fileID: 1093830622}
   GameOverUI: {fileID: 2022650958}
   GameWinUI: {fileID: 6424853}
@@ -632,8 +632,8 @@ MonoBehaviour:
   ElementObject: {fileID: 187332, guid: 10c964862c7958d41b9d59ebc9b6396f, type: 2}
   MouseInputing: 1
   DistanceOfTwoElements: 2
-  ElementsQuantity: 64
-  MinesQuantity: 23
+  ElementsQuantity: 125
+  MinesQuantity: 63
 --- !u!1 &668127188
 GameObject:
   m_ObjectHideFlags: 0

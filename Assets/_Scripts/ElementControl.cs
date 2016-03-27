@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class ElementControl : MonoBehaviour ,IPointerClickHandler,IPointerEnterHandler,
 IPointerExitHandler{
 
-    public List<Vector3> Directions =new List<Vector3>(); //to define the line's directions
+    public List<GameObject> Directions =new List<GameObject>(); //to define the line's directions
     //for different shapes of objects
     public LayerMask ElementMask;
     [Tooltip("bigger than 1 distance, less than 2 distances, distance configged in gamemanager")]
@@ -125,7 +125,13 @@ IPointerExitHandler{
 
                     GetComponent<Renderer>().material=FlagMat;
                     _isFlagged = true;
-                    GameManager.instance.FlagOne( _isAMine );
+                   
+                    GameManager.instance.FlagOne();
+
+                    if(_isAMine){
+
+                        GameManager.instance.FlagRightOne();
+                    }
 
 
 
@@ -134,7 +140,9 @@ IPointerExitHandler{
                 }else{
                     GetComponent<Renderer>().material=DefaultMat;
                     _isFlagged = false;
-                    GameManager.instance.UnFlagOne( !_isAMine);
+
+                    GameManager.instance.UnFlagOne();
+
 
                     StartCoroutine(SetRightClickFalse());
 
@@ -223,17 +231,24 @@ IPointerExitHandler{
 
     }
 
-    void SweeperToSendParticle(Vector3 direction){
+    void SweeperToSendParticle(GameObject direction){
 
 
-        Vector3 startPosition = transform.position + direction * transform.localScale.x / 2;
+        Vector3 startPosition = transform.position + 
+            (direction.transform.position-transform.position) * transform.localScale.x / 2;
         Quaternion startRotation = transform.rotation;
 
         GameObject ps = Instantiate
-            (ShootingParticls, startPosition, startRotation)
+            (ShootingParticls, startPosition, 
+
+
+
+                startRotation
+      )
             as GameObject;
 
-        ps.transform.LookAt(transform.position + direction);
+        ps.transform.LookAt(direction.transform.position);
+       
         ps.transform.parent = transform.parent.transform;
 
     }
@@ -242,11 +257,11 @@ IPointerExitHandler{
     int GetHowManyMinesNear(){ // to calculate how many mines near this element
         int ownNumber=0;
 
-        foreach (Vector3 direction in Directions)
+        foreach (GameObject direction in Directions)
         {
 
 
-            Ray ray = new Ray(transform.position, direction);
+            Ray ray = new Ray(transform.position, direction.transform.position-transform.position);
             RaycastHit hit;
 
 
@@ -273,7 +288,7 @@ IPointerExitHandler{
 
 
         GameObject go =Instantiate(DifferentNumbers [_ownNumber - 1], transform.position,
-            transform.rotation*Quaternion.AngleAxis(90f,Vector3.left)) 
+            transform.rotation*Quaternion.AngleAxis(90f,Vector3.left)) //rotation for the texture
             as GameObject;
 
         go.transform.parent = this.gameObject.transform.parent;
@@ -321,17 +336,11 @@ IPointerExitHandler{
 
             Debug.Log("mouse pointer click on" + gameObject.name);
 
-            if (_isABlank)
+            if (_isAMine) //keep check mine firstly
             {
 
-                ClickOnABlank();
-                //this is a blank element, then send line to sweeper elements near 
+              
 
-
-            } else if (_isAMine)
-            {
-
-               
                 //you falied, and game over
                 Debug.Log(gameObject.name + " is a mine, you failed!");
                 GameObject go = Instantiate(MineElement, transform.position,
@@ -339,6 +348,12 @@ IPointerExitHandler{
 
                 go.transform.parent = this.gameObject.transform.parent;
                 Destroy(this.gameObject);
+
+            } else if (_isABlank)
+            {
+                ClickOnABlank();
+                //this is a blank element, then send line to sweeper elements near 
+
 
 
             } else
