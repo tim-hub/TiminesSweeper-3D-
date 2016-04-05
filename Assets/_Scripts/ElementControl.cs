@@ -22,6 +22,7 @@ IPointerExitHandler{
     public Material FlagMat;
     public Material DefaultMat;
 
+
     private bool _isAMine=false;
     private bool _isABlank=false;
     private bool _isSweepered=false;
@@ -59,20 +60,7 @@ IPointerExitHandler{
         get{ return _isFlagged; }
     }
 
-    void Awake(){
 
-
-       
-
-
-
-    }
-
-    void OnEnable(){
-       
-
-
-    }
 
 
     void Start(){
@@ -169,8 +157,13 @@ IPointerExitHandler{
 
 
     void PlayClickAudio(){
-        Debug.Log("audio");
-        GetComponent<AudioSource>().Play();
+        
+
+
+		AudioSource audio =GetComponent<AudioSource>();
+		audio.Play(44100);
+
+		Debug.Log("click audio");
 
     }
 

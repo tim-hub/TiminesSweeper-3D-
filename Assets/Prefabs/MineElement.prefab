@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 425516}
   - 33: {fileID: 3339204}
   - 23: {fileID: 2374002}
-  - 114: {fileID: 11406110}
   - 114: {fileID: 11470160}
   m_Layer: 8
   m_Name: MineElement
@@ -129,17 +128,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130626}
   m_Mesh: {fileID: 4300000, guid: 8329acd25ffd119489ecb4acc0b7fda4, type: 3}
---- !u!114 &11406110
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 130626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b99de164fad4d174eaba118209a311c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11470160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exp: {fileID: 100000, guid: f4409e2a4fe27e842b083739e5deb8a6, type: 2}
-  mineLife: 2
+  mineLife: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

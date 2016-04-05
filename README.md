@@ -27,4 +27,4 @@ Contact me, we achieved / fix it together.
 - audio music_backgroun is from assest store, space shooter, it is free tu use too
 - click2.mp3 is under Attribution 3.0 license
 - backgroung.jpg is from assest store sample ui, it is free to use
-- 1~6 texture and core codes are all Copy Left, under GNU License
+- 1~6 texture and core codes are all Copy Left, under Eclipse Public License.
