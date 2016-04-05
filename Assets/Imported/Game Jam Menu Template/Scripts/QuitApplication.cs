@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 public class QuitApplication : MonoBehaviour {
 
 	public void Quit()
@@ -16,5 +16,11 @@ public class QuitApplication : MonoBehaviour {
 		//Stop playing the scene
 		UnityEditor.EditorApplication.isPlaying = false;
 	#endif
+	}
+
+	public void Exit(){
+
+		SceneManager.LoadScene(0);
+
 	}
 }

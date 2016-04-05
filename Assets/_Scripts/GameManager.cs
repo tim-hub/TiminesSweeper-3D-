@@ -250,12 +250,9 @@ public class GameManager : MonoBehaviour {
 
     public void Exit(){
 
-        Application.Quit();
+		SceneManager.LoadScene(0);
 
-        #if UNITY_EDITOR
-        Debug.Log("quit");
 
-        #endif
 
     }
 
