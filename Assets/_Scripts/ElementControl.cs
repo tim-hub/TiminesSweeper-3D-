@@ -136,12 +136,8 @@ IPointerExitHandler{
                     StartCoroutine(SetRightClickFalse());
 
                 }
-               
 
-               
             }
-
-
 
         }
 

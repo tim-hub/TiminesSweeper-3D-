@@ -23,35 +23,55 @@ public class InputManager : MonoBehaviour {
         fov = Camera.main.fieldOfView;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-        #if UNITY_ANDROID
 
-   
+
+	void LateUpdate()
+	{
 
 
 
-        #else
 
-        //use mouse wheel to control dield view
-        fov+=Input.GetAxis("Mouse ScrollWheel")*SensitivityFox*-1;
-        fov=Mathf.Clamp(fov,MinFov,MaxFov);
-        Camera.main.fieldOfView=fov;
+		#if UNITY_ANDROID
 
-        if (Input.GetMouseButton(1)){
-           
-            Debug.Log("Right Mouse Button Rotate");
+		// Does the main camera exist?
+		if (Camera.main != null)
+		{
+		// Make sure the pinch scale is valid
+		if (Lean.LeanTouch.PinchScale > 0.0f)
+		{
+		// Scale the FOV based on the pinch scale
+		Camera.main.fieldOfView /= Lean.LeanTouch.PinchScale/1f;
 
-           
-            ParentObject.transform.RotateAround(Vector3.zero,new Vector3(-Input.GetAxis("Mouse Y"),
-                -Input.GetAxis("Mouse X"),0f),
-                RotateSpeed);
+		// Make sure the new FOV is within our min/max
+		Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, MinFov, MaxFov);
+		}
+		}
 
 
-        }
 
-        #endif
+		#else
+
+
+
+
+		//use mouse wheel to control dield view
+		fov+=Input.GetAxis("Mouse ScrollWheel")*SensitivityFox*-1;
+		fov=Mathf.Clamp(fov,MinFov,MaxFov);
+		Camera.main.fieldOfView=fov;
+
+		if (Input.GetMouseButton(1)){
+
+			Debug.Log("Right Mouse Button Rotate");
+
+
+			ParentObject.transform.RotateAround(Vector3.zero,new Vector3(-Input.GetAxis("Mouse Y"),
+				-Input.GetAxis("Mouse X"),0f),
+				RotateSpeed);
+
+
+		}
+
+		#endif
 
 
 	}
