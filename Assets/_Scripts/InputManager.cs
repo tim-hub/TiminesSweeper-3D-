@@ -6,8 +6,8 @@ public class InputManager : MonoBehaviour {
     public GameObject ParentObject;
 
     public float Speed=3f; //move speed
-    public float RotateSpeed=3f; //rotate speed
-	public float SwipeThreshold=50f;
+    
+
 
     //fild of view
     public float MinFov=15f;
@@ -17,17 +17,7 @@ public class InputManager : MonoBehaviour {
 
     private float fov;
 
-	void OnEnable()
-	{
-		// Hook into the OnSwipe event
-		Lean.LeanTouch.OnFingerSwipe += OnFingerSwipe;
-	}
 
-	void OnDisable()
-	{
-		// Unhook into the OnSwipe event
-		Lean.LeanTouch.OnFingerSwipe -= OnFingerSwipe;
-	}
 
 	// Use this for initialization
 	void Start () {
@@ -92,34 +82,5 @@ public class InputManager : MonoBehaviour {
 
 
 
-	public void OnFingerSwipe(Lean.LeanFinger finger){
 
-		// Store the swipe delta in a temp variable
-		var swipe = finger.SwipeDelta;
-
-		if(swipe.magnitude>SwipeThreshold){
-
-			if (swipe.x < -Mathf.Abs(swipe.y))
-			{
-				Debug.Log( "You swiped left!");
-
-			}
-
-			if (swipe.x > Mathf.Abs(swipe.y))
-			{
-				
-			}
-
-			if (swipe.y < -Mathf.Abs(swipe.x))
-			{
-				
-			}
-
-			if (swipe.y > Mathf.Abs(swipe.x))
-			{
-				
-			}
-		}
-
-	}
 }
