@@ -14,6 +14,7 @@ IPointerExitHandler{
     public float WaitingSeconds=.5f;
 
     public GameObject ShootingParticls;
+	public GameObject AudioEffect;
 
 //    [Tooltip("Set the amount as the same as the directions, and keep the order")]
     public List<GameObject> DifferentNumbers=new List<GameObject>();
@@ -158,12 +159,9 @@ IPointerExitHandler{
 
     void PlayClickAudio(){
         
-
-
-		AudioSource audio =GetComponent<AudioSource>();
-		audio.Play(44100);
-
-		Debug.Log("click audio");
+		Instantiate(AudioEffect,transform.position,transform.rotation);
+		// the audio will be destroyed
+	
 
     }
 
@@ -345,6 +343,7 @@ IPointerExitHandler{
            
 
             }
+
         }
     }
 
