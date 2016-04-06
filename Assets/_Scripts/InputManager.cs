@@ -89,13 +89,7 @@ public class InputManager : MonoBehaviour {
 
 	}
 
-	void FixedUpdate(){
 
-
-		float y = Mathf.Clamp(transform.rotation.y,-10,60);
-		transform.rotation=Quaternion.Euler(new Vector3(transform.rotation.x,y,transform.rotation.z));
-
-	}
 
 
 	public void OnFingerSwipe(Lean.LeanFinger finger){

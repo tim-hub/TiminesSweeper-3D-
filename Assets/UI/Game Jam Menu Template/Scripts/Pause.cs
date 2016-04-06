@@ -17,6 +17,58 @@ public class Pause : MonoBehaviour {
 		startScript = GetComponent<StartOptions> ();
 	}
 
+
+
+
+	//added
+	void OnEnable(){
+		ButtonESC.PressESC+= PressToPause;
+
+	}
+	void Disable(){
+		ButtonESC.PressESC-= PressToPause;
+
+	}
+
+	void PressToPause(){
+
+		Debug.Log("get the event");
+		CheckPause();
+	}
+
+
+
+	void CheckPause(){
+
+
+		if ( !isPaused && !startScript.inMainMenu) 
+		{
+			
+			DoPause();
+		} 
+
+		else if ( isPaused && !startScript.inMainMenu) 
+		{
+			UnPause ();
+		}
+
+
+	}
+	//end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	// Update is called once per frame
 	void Update () {
 
