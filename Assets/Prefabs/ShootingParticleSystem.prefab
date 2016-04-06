@@ -27,7 +27,6 @@ GameObject:
   - 4: {fileID: 491910}
   - 199: {fileID: 19916358}
   - 198: {fileID: 19835060}
-  - 135: {fileID: 13599370}
   - 114: {fileID: 11489376}
   m_Layer: 0
   m_Name: ShootingParticleSystem
@@ -72,18 +71,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90205aeb9bf2ffc4e8869c784ae89229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &13599370
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 192194}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 16
-  m_Center: {x: 0, y: 0, z: 16}
 --- !u!198 &19835060
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -1555,7 +1542,7 @@ ParticleSystem:
       serializedVersion: 2
       m_Bits: 256
     maxCollisionShapes: 256
-    quality: 1
+    quality: 0
     voxelSize: 0.5
     collisionMessages: 1
     collidesWithDynamic: 1

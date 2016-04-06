@@ -172,7 +172,7 @@ RectTransform:
   - {fileID: 1212044471}
   - {fileID: 716078375}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -641,7 +641,7 @@ MonoBehaviour:
   MouseInputing: 1
   DistanceOfTwoElements: 2
   ElementsQuantity: 27
-  MinesQuantity: 5
+  MinesQuantity: 1
 --- !u!1 &668127188
 GameObject:
   m_ObjectHideFlags: 0
@@ -2406,7 +2406,7 @@ RectTransform:
   - {fileID: 338398323}
   - {fileID: 1865021741}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}

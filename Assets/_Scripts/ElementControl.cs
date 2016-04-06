@@ -167,83 +167,68 @@ IPointerExitHandler{
 
     }
 
-    void SweeperToSendLine(Vector3 direction){
-        //wait
 
-
-        // cast a ray along the directions
-        //to dig the elements near
-
-        //particle system
-
-
-
-
-        //below is use the ray
-
-        Ray ray = new Ray(transform.position, direction);
-        RaycastHit hit;
-
-
-        if (Physics.Raycast(ray, out hit, RayLength, ElementMask))
-        {
-            GameObject hitObject = hit.collider.gameObject;
-            ElementControl hitObjectElement = hitObject.GetComponent<ElementControl>();
-
-
-            if ((hitObjectElement!=null)
-                &&(!(hitObjectElement.IsAMine))
-                && (!hitObjectElement.IsSweepered) 
-                &&(!hitObjectElement.IsFlagged))
-            {
-
-
-
-                // not a mine and not be sweepered
-
-                // sweeper the elements near
-                if (hitObjectElement.IsABlank)
-                {
-                    
-                    hitObjectElement.ClickOnABlank();
-
-
-                } else
-                {
-                    hitObjectElement.SweeperThisElement();
-
-
-                }
-
-            }
-
-        }
-
-       
-
-
-    }
 
     void SweeperToSendParticle(GameObject direction){
 
+		Debug.Log("send particle to sweeper");
 
         Vector3 startPosition = transform.position + 
             (direction.transform.position-transform.position) * transform.localScale.x / 2;
         Quaternion startRotation = transform.rotation;
 
         GameObject ps = Instantiate
-            (ShootingParticls, startPosition, 
-
-
-
-                startRotation
-      )
+            (ShootingParticls, startPosition, startRotation)
             as GameObject;
 
         ps.transform.LookAt(direction.transform.position);
        
         ps.transform.parent = transform.parent.transform;
 
+
+		//#if UNITY_WEBGL
+		// to fix the weired problem in webgl
+		// OnParticleCollision does not work
+
+
+		//Debug.Log("Start to Sweep");
+
+
+//		RaycastHit hit;
+//
+//		if(Physics.Raycast(transform.position,(direction.transform.position-transform.position),out hit,ElementMask)){
+//
+//			Debug.Log("ray hit"+hit.collider.gameObject.name);
+//			GameObject hitObject = hit.collider.gameObject;
+//
+//
+//			ElementControl hitObjectElement = hitObject.GetComponent<ElementControl>();
+//
+//
+//			if ((hitObjectElement != null)
+//				&& (!(hitObjectElement.IsAMine))
+//				&& (!hitObjectElement.IsSweepered)
+//				&& (!hitObjectElement.IsFlagged))
+//			{
+//
+//				// not a mine and not be sweepered
+//
+//				// sweeper the elements near
+//				if (hitObjectElement.IsABlank)
+//				{
+//
+//					hitObjectElement.ClickOnABlank();
+//
+//				} else //a number, with mines near
+//				{
+//					hitObjectElement.SweeperThisElement();
+//				}
+//
+//			}
+	//	}
+
+
+		//#endif
     }
 
 
@@ -304,9 +289,10 @@ IPointerExitHandler{
         //to sweeper the near
         for (int i = 0; i < Directions.Count; i++)
         {
-           //SweeperToSendLine(Directions [i]);
+
 
             SweeperToSendParticle(Directions [i]);
+
 
         }
 
@@ -344,6 +330,7 @@ IPointerExitHandler{
 
             } else if (_isABlank)
             {
+				Debug.Log("click on as blank");
                 ClickOnABlank();
                 //this is a blank element, then send line to sweeper elements near 
 

@@ -10,7 +10,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: GeekGame
-  productName: TiMinesSweeper(3D)
+  productName: TMS
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
@@ -45,7 +45,7 @@ PlayerSettings:
   Prepare IOS For Recording: 0
   submitAnalytics: 1
   usePlayerLog: 1
-  bakeCollisionMeshes: 1
+  bakeCollisionMeshes: 0
   forceSingleInstance: 0
   resizableWindow: 0
   useMacAppStoreValidation: 0
@@ -111,7 +111,7 @@ PlayerSettings:
   CreateWallpaper: 0
   APKExpansionFiles: 0
   preloadShaders: 1
-  StripUnusedMeshComponents: 1
+  StripUnusedMeshComponents: 0
   VertexChannelCompressionMask:
     serializedVersion: 2
     m_Bits: 238
@@ -178,8 +178,8 @@ PlayerSettings:
       m_Height: 128
   m_BuildTargetBatching:
   - m_BuildTarget: WebGL
-    m_StaticBatching: 1
-    m_DynamicBatching: 1
+    m_StaticBatching: 0
+    m_DynamicBatching: 0
   - m_BuildTarget: Web
     m_StaticBatching: 1
     m_DynamicBatching: 1
