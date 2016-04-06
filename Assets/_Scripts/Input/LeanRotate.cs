@@ -3,7 +3,13 @@ using System.Collections;
 
 public class LeanRotate : MonoBehaviour {
 
-	
+	void FixedUpdate(){
+
+
+		float y = Mathf.Clamp(transform.rotation.y,-10,60);
+		transform.rotation=Quaternion.Euler(new Vector3(transform.rotation.x,y,transform.rotation.z));
+
+	}
 	// Update is called once per frame
 	void LateUpdate () {
 		// Get the center point of all touches
