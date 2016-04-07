@@ -265,7 +265,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 611725693}
   - 114: {fileID: 624190280}
-  - 114: {fileID: 611725692}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -273,22 +272,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &611725692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 611725691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df5edfb9d9145f04b81a4102c698ead2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ParentObject: {fileID: 1895515570}
-  Speed: 3
-  MinFov: 5
-  MaxFov: 90
-  SensitivityFox: 10
 --- !u!4 &611725693
 Transform:
   m_ObjectHideFlags: 0
@@ -1135,7 +1118,7 @@ GameObject:
   - 4: {fileID: 1895515571}
   - 81: {fileID: 1895515572}
   - 82: {fileID: 1895515574}
-  - 114: {fileID: 1895515573}
+  - 114: {fileID: 1895515575}
   m_Layer: 0
   m_Name: Elements
   m_TagString: Untagged
@@ -1162,20 +1145,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1895515570}
   m_Enabled: 1
---- !u!114 &1895515573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1895515570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70aa86bc11602774da6d978631a3c1a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SwipeThreshold: 50
-  SensitivityRotation: 90
-  RotateSpeed: 3
 --- !u!82 &1895515574
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1251,6 +1220,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1895515575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1895515570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df5edfb9d9145f04b81a4102c698ead2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParentObject: {fileID: 1895515570}
+  ElementMask:
+    serializedVersion: 2
+    m_Bits: 256
+  LongPressTime: 0.3
+  Speed: 3
+  SwipeThreshold: 70
+  HeldThreshold: 0.5
+  SensitivityRotation: 45
+  RotateSpeed: 3
+  MinFov: 5
+  MaxFov: 90
+  SensitivityFox: 10
 --- !u!1 &2013282401
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class LeanRotate : MonoBehaviour {
+
 	
 	public float SwipeThreshold=50f;
 	public float SensitivityRotation=45f;
@@ -13,6 +14,7 @@ public class LeanRotate : MonoBehaviour {
 	{
 		// Hook into the OnSwipe event
 		Lean.LeanTouch.OnFingerSwipe += OnFingerSwipe;
+	
 	}
 
 	void OnDisable()
@@ -22,13 +24,13 @@ public class LeanRotate : MonoBehaviour {
 	}
 
 	void Start(){
-
+		Debug.Log("lean rotate");
 
 		newQuaternion=transform.rotation;
 
 	}
 
-	void Update(){
+	void LateUpdate(){
 
 		transform.rotation=Quaternion.Lerp
 			(transform.rotation,newQuaternion,
@@ -42,13 +44,15 @@ public class LeanRotate : MonoBehaviour {
 		// Store the swipe delta in a temp variable
 		var swipe = finger.SwipeDelta;
 
-		if(swipe.magnitude>SwipeThreshold){
+		if(swipe.magnitude>SwipeThreshold ){
 
 			if (swipe.x < -Mathf.Abs(swipe.y))
 			{
 				Debug.Log( "You swiped left!");
 				//_thisY+=SensitivityRotation;
+
 				newQuaternion=Quaternion.AngleAxis(90,Vector3.up)*transform.rotation;
+
 
 			}
 

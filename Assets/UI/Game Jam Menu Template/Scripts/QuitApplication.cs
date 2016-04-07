@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 public class QuitApplication : MonoBehaviour {
 
-	public void Quit()
+	void Quit()
 	{
 		//If we are running in a standalone build of the game
 	#if UNITY_STANDALONE
@@ -16,11 +16,20 @@ public class QuitApplication : MonoBehaviour {
 		//Stop playing the scene
 		UnityEditor.EditorApplication.isPlaying = false;
 	#endif
+
+
+
 	}
 
 	public void Exit(){
 
-		SceneManager.LoadScene(0);
+		if(SceneManager.GetActiveScene().buildIndex==0){
+			Quit();
 
+		}else{
+
+			SceneManager.LoadScene(0);
+			Destroy(this.gameObject);//because ui is do not destroy auto
+		}
 	}
 }

@@ -35,6 +35,9 @@ IPointerExitHandler{
 
     private int _ownNumber;
 
+
+
+
     public bool IsABlank{
 
         get {return _isABlank; }
@@ -96,54 +99,32 @@ IPointerExitHandler{
         // long press
 
 
+
         #else
         //the mouse input
 
-
-        if (_isPointerOnTheObject){ //pointer on the object
-
-
-            if (Input.GetMouseButtonDown(1) ) //right click
-            {
-
-                PlayClickAudio();
-
-                _rightClick=true;
-
-                if(!_isFlagged){
-
-                    GetComponent<Renderer>().material=FlagMat;
-                    _isFlagged = true;
-                   
-                    GameManager.instance.FlagOne();
-
-                    if(_isAMine){
-
-                        GameManager.instance.FlagRightOne();
-                    }
-
-
-
-                    StartCoroutine(SetRightClickFalse()); //use this corountine to avoid to cancle flag to sweeper
-
-                }else{
-                    GetComponent<Renderer>().material=DefaultMat;
-                    _isFlagged = false;
-
-                    GameManager.instance.UnFlagOne();
-
-
-                    StartCoroutine(SetRightClickFalse());
-
-                }
-
-            }
-
-        }
+//
+//        if (_isPointerOnTheObject){ //pointer on the object
+//
+//
+//			if (Input.GetMouseButtonDown(1)  ) //right click
+//            {
+//
+//				FlagThisElement();
+//
+//            }
+//
+//        }
 
         #endif
 
+
     }
+
+
+
+
+
 
     IEnumerator SetRightClickFalse(){
         yield return new WaitForSeconds(WaitingSeconds);
@@ -165,7 +146,7 @@ IPointerExitHandler{
 
     void SweeperToSendParticle(GameObject direction){
 
-		Debug.Log("send particle to sweeper");
+		//Debug.Log("send particle to sweeper");
 
         Vector3 startPosition = transform.position + 
             (direction.transform.position-transform.position) * transform.localScale.x / 2;
@@ -180,49 +161,6 @@ IPointerExitHandler{
         ps.transform.parent = transform.parent.transform;
 
 
-		//#if UNITY_WEBGL
-		// to fix the weired problem in webgl
-		// OnParticleCollision does not work
-
-
-		//Debug.Log("Start to Sweep");
-
-
-//		RaycastHit hit;
-//
-//		if(Physics.Raycast(transform.position,(direction.transform.position-transform.position),out hit,ElementMask)){
-//
-//			Debug.Log("ray hit"+hit.collider.gameObject.name);
-//			GameObject hitObject = hit.collider.gameObject;
-//
-//
-//			ElementControl hitObjectElement = hitObject.GetComponent<ElementControl>();
-//
-//
-//			if ((hitObjectElement != null)
-//				&& (!(hitObjectElement.IsAMine))
-//				&& (!hitObjectElement.IsSweepered)
-//				&& (!hitObjectElement.IsFlagged))
-//			{
-//
-//				// not a mine and not be sweepered
-//
-//				// sweeper the elements near
-//				if (hitObjectElement.IsABlank)
-//				{
-//
-//					hitObjectElement.ClickOnABlank();
-//
-//				} else //a number, with mines near
-//				{
-//					hitObjectElement.SweeperThisElement();
-//				}
-//
-//			}
-	//	}
-
-
-		//#endif
     }
 
 
@@ -293,71 +231,113 @@ IPointerExitHandler{
     }
 
 
+	public void FlagThisElement(){
 
-    public void OnPointerClick(PointerEventData eventData){ // add a if for whether it is a flag
-       
+		PlayClickAudio();
+
+		_rightClick=true;
+
+		if(!_isFlagged){
+
+			GetComponent<Renderer>().material=FlagMat;
+			_isFlagged = true;
+
+			GameManager.instance.FlagOne();
+
+			if(_isAMine){
+
+				GameManager.instance.FlagRightOne();
+			}
 
 
-        if (!((_rightClick) ||(_isFlagged) ))
-        {
 
-            PlayClickAudio();
+			StartCoroutine(SetRightClickFalse()); //use this corountine to avoid to cancle flag to sweeper
 
-            _isSweepered = true;
+		}else{
+			GetComponent<Renderer>().material=DefaultMat;
+			_isFlagged = false;
+
+			GameManager.instance.UnFlagOne();
+
+
+			StartCoroutine(SetRightClickFalse());
+
+		}
+
+
+	}
+
+	public void SweeperThisOne(){
+
+		if (!((_rightClick) ||(_isFlagged) ))
+		{
+
+			PlayClickAudio();
+
+			_isSweepered = true;
 
 
 
-            Debug.Log("mouse pointer click on" + gameObject.name);
+			Debug.Log("mouse pointer click on" + gameObject.name);
 
-            if (_isAMine) //keep check mine firstly
-            {
+			if (_isAMine) //keep check mine firstly
+			{
 
-              
 
-                //you falied, and game over
-                Debug.Log(gameObject.name + " is a mine, you failed!");
-                GameObject go = Instantiate(MineElement, transform.position,
-                    transform.rotation) as GameObject;
 
-                go.transform.parent = this.gameObject.transform.parent;
-                Destroy(this.gameObject);
+				//you falied, and game over
+				Debug.Log(gameObject.name + " is a mine, you failed!");
+				GameObject go = Instantiate(MineElement, transform.position,
+					transform.rotation) as GameObject;
 
-            } else if (_isABlank)
-            {
+				go.transform.parent = this.gameObject.transform.parent;
+				Destroy(this.gameObject);
+
+			} else if (_isABlank)
+			{
 				Debug.Log("click on as blank");
-                ClickOnABlank();
-                //this is a blank element, then send line to sweeper elements near 
+				ClickOnABlank();
+				//this is a blank element, then send line to sweeper elements near 
 
 
 
-            } else
-            { //this is an element with mines near
+			} else
+			{ //this is an element with mines near
 
 
 
-                SweeperThisElement();
-           
-
-            }
-
-        }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData){
-        //Debug.Log("mouse pointer enter on" + gameObject.name);
+				SweeperThisElement();
 
 
-        _isPointerOnTheObject = true;
+			}
 
-    }
+		}
 
 
-    public void OnPointerExit(PointerEventData eventData){
-        _isPointerOnTheObject = false;
+	}
+
+
+	public void OnPointerClick(PointerEventData eventData){ // add a if for whether it is a flag
 
 
 
-    }
+	}
+
+	public void OnPointerEnter(PointerEventData eventData){
+		//Debug.Log("mouse pointer enter on" + gameObject.name);
+
+
+		_isPointerOnTheObject = true;
+
+	}
+
+
+	public void OnPointerExit(PointerEventData eventData){
+		_isPointerOnTheObject = false;
+
+
+
+	}
 
     #endregion
 }

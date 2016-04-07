@@ -5,7 +5,7 @@ PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 8
   AndroidProfiler: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 3
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -23,7 +23,7 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   m_ActiveColorSpace: 0
   m_MTRendering: 1
-  m_MobileMTRendering: 0
+  m_MobileMTRendering: 1
   m_Stereoscopic3D: 0
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
@@ -45,7 +45,7 @@ PlayerSettings:
   Prepare IOS For Recording: 0
   submitAnalytics: 1
   usePlayerLog: 1
-  bakeCollisionMeshes: 0
+  bakeCollisionMeshes: 1
   forceSingleInstance: 0
   resizableWindow: 0
   useMacAppStoreValidation: 0
@@ -89,7 +89,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.Company.ProductName
+  bundleIdentifier: uno.bai.geekgame.tms
   bundleVersion: 1.0
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
@@ -99,11 +99,11 @@ PlayerSettings:
   productGUID: 383907847de59104399c567e3e169b45
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 9
-  AndroidPreferredInstallLocation: 1
+  AndroidPreferredInstallLocation: 0
   aotOptions: 
   apiCompatibilityLevel: 2
   stripEngineCode: 1
-  iPhoneStrippingLevel: 0
+  iPhoneStrippingLevel: 3
   iPhoneScriptCallOptimization: 0
   iPhoneBuildNumber: 0
   ForceInternetPermission: 0
@@ -111,7 +111,7 @@ PlayerSettings:
   CreateWallpaper: 0
   APKExpansionFiles: 0
   preloadShaders: 1
-  StripUnusedMeshComponents: 0
+  StripUnusedMeshComponents: 1
   VertexChannelCompressionMask:
     serializedVersion: 2
     m_Bits: 238
@@ -155,7 +155,7 @@ PlayerSettings:
   iOSLaunchScreeniPadSize: 100
   iOSLaunchScreeniPadCustomXibPath: 
   iOSDeviceRequirements: []
-  AndroidTargetDevice: 0
+  AndroidTargetDevice: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: 
@@ -173,7 +173,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 99ebd2296dff8a1449d6ebaaa1a2cefe, type: 3}
+      m_Icon: {fileID: 2800000, guid: ab84fb436396d4748b58a90d5f089ba6, type: 3}
       m_Width: 128
       m_Height: 128
   m_BuildTargetBatching:
@@ -339,13 +339,13 @@ PlayerSettings:
   scriptingDefineSymbols:
     1: CROSS_PLATFORM_INPUT
     2: CROSS_PLATFORM_INPUT
-    4: CROSS_PLATFORM_INPUT;MOBILE_INPUT
-    7: CROSS_PLATFORM_INPUT;MOBILE_INPUT
-    14: MOBILE_INPUT
-    15: CROSS_PLATFORM_INPUT;MOBILE_INPUT
-    16: CROSS_PLATFORM_INPUT;MOBILE_INPUT
-    17: MOBILE_INPUT
-    20: MOBILE_INPUT
+    4: CROSS_PLATFORM_INPUT
+    7: CROSS_PLATFORM_INPUT
+    14: 
+    15: CROSS_PLATFORM_INPUT
+    16: CROSS_PLATFORM_INPUT
+    17: 
+    20: 
   metroPackageName: TMines(3D)
   metroPackageVersion: 
   metroCertificatePath: 
