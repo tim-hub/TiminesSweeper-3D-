@@ -237,11 +237,16 @@ public class GameManager : MonoBehaviour {
     public void GameOver(){
 
         //show ui
-
-        GameOverUI.SetActive(true);
+		Invoke("GameOverUIShow",1f);
+        
 
 
     }
+
+	void GameOverUIShow(){
+
+		GameOverUI.SetActive(true);
+	}
 
     public void Restart(){
         

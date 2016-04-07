@@ -6,10 +6,10 @@ public class QuitApplication : MonoBehaviour {
 	void Quit()
 	{
 		//If we are running in a standalone build of the game
-	#if UNITY_STANDALONE
+
 		//Quit the application
 		Application.Quit();
-	#endif
+	
 
 		//If we are running in the editor
 	#if UNITY_EDITOR
