@@ -1016,6 +1016,10 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PressESCButton
       objectReference: {fileID: 0}
+    - target: {fileID: 146710, guid: df7b4705ed4d2aa4babe2cfdbb82f899, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11438778, guid: df7b4705ed4d2aa4babe2cfdbb82f899, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: df7b4705ed4d2aa4babe2cfdbb82f899, type: 2}

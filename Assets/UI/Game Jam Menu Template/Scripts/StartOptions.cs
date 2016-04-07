@@ -12,7 +12,11 @@ public class StartOptions : MonoBehaviour {
 	public bool changeScenes;											//If true, load a new scene when Start is pressed, if false, fade out UI and continue in single scene
 	public bool changeMusicOnStart;										//Choose whether to continue playing menu music or start a new music clip
 	[Tooltip("If want to use one bgm, put the bgm as the child of UI")]
-	public PlayMusic playMusic;		
+	public PlayMusic playMusic;
+
+	//
+	public GameObject ESCButton;
+	//
 
 	[HideInInspector] public bool inMainMenu = true;					//If true, pause button disabled in main menu (Cancel in input manager, default escape key)
 	[HideInInspector] public Animator animColorFade; 					//Reference to animator which will fade to and from black when starting game.
@@ -62,6 +66,9 @@ public class StartOptions : MonoBehaviour {
 			StartGameInScene();
 		}
 
+		//
+		ESCButton.SetActive(false);
+		//
 	}
 
 	//Once the level has loaded, check if we want to call PlayLevelMusic
@@ -82,6 +89,7 @@ public class StartOptions : MonoBehaviour {
 
 		//Hide the main menu UI element
 		showPanels.HideMenu ();
+		ESCButton.SetActive(true);
 
 		//Load the selected scene, by scene index number in build settings
 		SceneManager.LoadScene (sceneToStart);
@@ -91,6 +99,7 @@ public class StartOptions : MonoBehaviour {
 	{
 		//Hide the main menu UI element after fading out menu for start game in scene
 		showPanels.HideMenu();
+
 	}
 
 	public void StartGameInScene()

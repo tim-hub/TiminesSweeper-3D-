@@ -8,7 +8,9 @@ public class ShowPanels : MonoBehaviour {
 	public GameObject optionsTint;							//Store a reference to the Game Object OptionsTint 
 	public GameObject menuPanel;							//Store a reference to the Game Object MenuPanel 
 	public GameObject pausePanel;							//Store a reference to the Game Object PausePanel 
-
+	//
+	public GameObject ESCButton;
+	//
 
 	//Call this function to activate and display the Options panel during the main menu
 	public void ShowOptionsPanel()
@@ -48,6 +50,7 @@ public class ShowPanels : MonoBehaviour {
 	public void HideMenu()
 	{
 		menuPanel.SetActive (false);
+		ESCButton.SetActive(true);
 	}
 	
 	//Call this function to activate and display the Pause panel during game play
