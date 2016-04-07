@@ -14,7 +14,7 @@ SceneSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.665923, g: 0.60294116, b: 1, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
@@ -51,7 +51,7 @@ LightmapSettings:
     m_TemporalCoherenceThreshold: 1
     m_EnvironmentLightingMode: 0
     m_EnableBakedLightmaps: 0
-    m_EnableRealtimeLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 3
     m_Resolution: 2
@@ -286,8 +286,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentObject: {fileID: 1895515570}
   Speed: 3
-  RotateSpeed: 3
-  SwipeThreshold: 50
   MinFov: 5
   MaxFov: 90
   SensitivityFox: 10
@@ -322,8 +320,8 @@ MonoBehaviour:
   ElementObject: {fileID: 187332, guid: 10c964862c7958d41b9d59ebc9b6396f, type: 2}
   MouseInputing: 1
   DistanceOfTwoElements: 2
-  ElementsQuantity: 64
-  MinesQuantity: 1
+  ElementsQuantity: 27
+  MinesQuantity: 5
 --- !u!1 &670225398
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,9 +426,9 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_Strength: 1
+    m_Type: 1
+    m_Resolution: 0
+    m_Strength: 0.3
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -1136,8 +1134,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 1895515571}
   - 81: {fileID: 1895515572}
-  - 114: {fileID: 1895515573}
   - 82: {fileID: 1895515574}
+  - 114: {fileID: 1895515573}
   m_Layer: 0
   m_Name: Elements
   m_TagString: Untagged
@@ -1151,7 +1149,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1895515570}
-  m_LocalRotation: {x: 0, y: 0.2588187, z: 0, w: -0.96592593}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
