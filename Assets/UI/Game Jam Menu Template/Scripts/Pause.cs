@@ -56,19 +56,6 @@ public class Pause : MonoBehaviour {
 	}
 	//end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	// Update is called once per frame
 	void Update () {
 

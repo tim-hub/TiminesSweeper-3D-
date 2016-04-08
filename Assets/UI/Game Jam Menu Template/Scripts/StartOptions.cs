@@ -34,7 +34,19 @@ public class StartOptions : MonoBehaviour {
 		showPanels = GetComponent<ShowPanels> ();
 
 		//Get a reference to PlayMusic attached to UI object
+
+
+		//
 		playMusic = GetComponent<PlayMusic> ();
+
+
+		if(SceneManager.GetActiveScene().buildIndex!=0){
+			
+			inMainMenu = false;
+		}
+
+
+		//
 	}
 
 
@@ -75,6 +87,8 @@ public class StartOptions : MonoBehaviour {
 		{
 			playMusic.PlayLevelMusic ();
 		}	
+
+
 	}
 
 
