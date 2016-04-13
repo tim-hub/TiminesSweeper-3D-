@@ -9,7 +9,7 @@ public class Resume : MonoBehaviour {
 
 	public void ResumeGame(){
 
-		int scene=PlayerPrefs.GetInt("lastScene",StartOptionComponent.sceneToStart);
+		int scene=PlayerPrefs.GetInt("LastScene",StartOptionComponent.sceneToStart);// set the int value when you win in a level
 
 		StartOptionComponent.sceneToStart=scene;
 

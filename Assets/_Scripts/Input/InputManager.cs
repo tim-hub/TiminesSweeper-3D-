@@ -86,6 +86,26 @@ public class InputManager : MonoBehaviour {
 
 
 		}
+
+		//basio keyboard input
+		if(Input.GetKeyDown(KeyCode.A)){
+
+			RotateLeft();
+		}
+		if(Input.GetKeyDown(KeyCode.D)){
+
+			RotateRight();
+		}
+		if(Input.GetKeyDown(KeyCode.W)){
+
+			RotateUp();
+		}
+		if(Input.GetKeyDown(KeyCode.S)){
+
+			RotateDown();
+		}
+
+
 	}
 
 	void LateUpdate() 
@@ -105,7 +125,6 @@ public class InputManager : MonoBehaviour {
 
 
 		//rotate
-
 
 		transform.rotation=Quaternion.Lerp
 			(transform.rotation,newQuaternion,
@@ -146,6 +165,27 @@ public class InputManager : MonoBehaviour {
 		}
 
 	}
+
+	#endregion
+	#region rotate
+
+	void RotateLeft(){
+		newQuaternion=Quaternion.AngleAxis(90,Vector3.up)*transform.rotation;
+
+	}
+	void RotateRight(){
+
+		newQuaternion=Quaternion.AngleAxis(-90,Vector3.up)*transform.rotation;
+	}
+
+	void RotateDown(){
+
+		newQuaternion=Quaternion.AngleAxis(90,Vector3.right)*transform.rotation;
+	}
+	void RotateUp(){
+
+		newQuaternion=Quaternion.AngleAxis(-90,Vector3.right)*transform.rotation;
+	}
 	#endregion
 
 	#region On Finger
@@ -164,8 +204,8 @@ public class InputManager : MonoBehaviour {
 
 				Debug.Log( "You swiped left!");
 
+				RotateLeft();
 
-				newQuaternion=Quaternion.AngleAxis(90,Vector3.up)*transform.rotation;
 
 
 			}
@@ -173,20 +213,20 @@ public class InputManager : MonoBehaviour {
 			if (swipe.x > Mathf.Abs(swipe.y))
 			{
 
-				newQuaternion=Quaternion.AngleAxis(-90,Vector3.up)*transform.rotation;
+				RotateRight();
 
 			}
 
 			if (swipe.y < -Mathf.Abs(swipe.x))
 			{
 				//_parentX+=SensitivityRotation;
-				newQuaternion=Quaternion.AngleAxis(90,Vector3.right)*transform.rotation;
+				RotateDown();
 			}
 
 			if (swipe.y > Mathf.Abs(swipe.x))
 			{
+				RotateUp();
 
-				newQuaternion=Quaternion.AngleAxis(-90,Vector3.right)*transform.rotation;
 			}
 		}
 

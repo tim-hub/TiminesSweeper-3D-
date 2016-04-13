@@ -199,7 +199,7 @@ public class GameManager : MonoBehaviour {
 
             Debug.Log("Win");
 
-			PlayerPrefs.SetInt("lastScene",SceneManager.GetActiveScene().buildIndex+1);
+			PlayerPrefs.SetInt("LastScene",SceneManager.GetActiveScene().buildIndex+1);
 
             GameWinUI.SetActive(true);
 
