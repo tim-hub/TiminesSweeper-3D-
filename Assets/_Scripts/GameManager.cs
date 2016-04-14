@@ -10,7 +10,11 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public string NextLevel;
 
-    public UIManager ui;
+	public UISetText MinesText;
+	public UISetText FlagsText;
+	public UISetText TimingText;
+	public UISetText HighText;
+
     public GameObject GameOverUI;
     public GameObject GameWinUI;
     public GameObject ParentOfElements;
@@ -32,6 +36,7 @@ public class GameManager : MonoBehaviour {
     private List<Vector3> _elementPositions=new List<Vector3>(); 
     private List<int> _randomMinesPositionList = new List<int>();
 
+	private float _runningTime=0f;
 
 
     void Awake(){
@@ -50,10 +55,13 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        ui.SetMines(MinesQuantity);
+        MinesText.SetText(MinesQuantity);
         flagsCount = 0;
-        ui.SetFlags(flagsCount);
+        FlagsText.SetText(flagsCount);
+		HighText.SetText(PlayerPrefs.GetString("HighScoreIn"+SceneManager.GetActiveScene().buildIndex,0f.ToString()));
 
+		_runningTime=0f;
+		TimingText.SetText(( _runningTime));
 
 
         GameOverUI.SetActive(false);
@@ -70,6 +78,12 @@ public class GameManager : MonoBehaviour {
 	
 	}
 
+	void Update(){
+
+		_runningTime+=Time.deltaTime;
+		TimingText.SetText(_runningTime.ToString("F1"));
+
+	}
 
 
 
@@ -201,6 +215,7 @@ public class GameManager : MonoBehaviour {
 
 			PlayerPrefs.SetInt("LastScene",SceneManager.GetActiveScene().buildIndex+1);
 
+			PlayerPrefs.SetString("HighScoreIn"+SceneManager.GetActiveScene().buildIndex,_runningTime.ToString("F1"));
             GameWinUI.SetActive(true);
 
 
@@ -213,7 +228,7 @@ public class GameManager : MonoBehaviour {
     public void FlagOne(){
 
         flagsCount++;
-        ui.SetFlags(flagsCount);
+        FlagsText.SetText(flagsCount);
 
 
 
@@ -227,7 +242,7 @@ public class GameManager : MonoBehaviour {
     public void UnFlagOne(){
 
         flagsCount--;
-        ui.SetFlags(flagsCount);
+        FlagsText.SetText(flagsCount);
 
 
 

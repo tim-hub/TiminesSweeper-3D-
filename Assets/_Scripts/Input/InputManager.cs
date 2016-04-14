@@ -88,19 +88,19 @@ public class InputManager : MonoBehaviour {
 		}
 
 		//basio keyboard input
-		if(Input.GetKeyDown(KeyCode.A)){
+		if(Input.GetKeyDown(KeyCode.A) ||Input.GetKeyDown(KeyCode.LeftArrow)){
 
 			RotateLeft();
 		}
-		if(Input.GetKeyDown(KeyCode.D)){
+		if(Input.GetKeyDown(KeyCode.D)||Input.GetKeyDown(KeyCode.RightArrow)){
 
 			RotateRight();
 		}
-		if(Input.GetKeyDown(KeyCode.W)){
+		if(Input.GetKeyDown(KeyCode.W)||Input.GetKeyDown(KeyCode.UpArrow)){
 
 			RotateUp();
 		}
-		if(Input.GetKeyDown(KeyCode.S)){
+		if(Input.GetKeyDown(KeyCode.S)||Input.GetKeyDown(KeyCode.DownArrow)){
 
 			RotateDown();
 		}
@@ -116,8 +116,16 @@ public class InputManager : MonoBehaviour {
 		if (Camera.main != null)
 		{
 
-			//use mouse wheel to control dield view
-			fov+=Input.GetAxis("Mouse ScrollWheel")*SensitivityFox*-1;
+			if(Input.GetKey(KeyCode.Q)){
+				fov-=SensitivityFox/10f;
+
+			}else if(Input.GetKey(KeyCode.E)){
+				fov+=SensitivityFox/10f;
+
+			}else{
+				//use mouse wheel to control dield view
+				fov+=Input.GetAxis("Mouse ScrollWheel")*SensitivityFox*-1;
+			}
 
 			fov=Mathf.Clamp(fov,MinFov,MaxFov);
 			Camera.main.fieldOfView=fov;
