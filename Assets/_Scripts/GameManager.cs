@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour {
     private List<int> _randomMinesPositionList = new List<int>();
 
 	private float _runningTime=0f;
-
+	private bool _pauseCounting=false;
 
     void Awake(){
 
@@ -80,9 +80,11 @@ public class GameManager : MonoBehaviour {
 
 	void Update(){
 
-		_runningTime+=Time.deltaTime;
-		TimingText.SetText(_runningTime.ToString("F1"));
+		if(!_pauseCounting){ 
 
+			_runningTime+=Time.deltaTime;
+			TimingText.SetText(_runningTime.ToString("F1"));
+		}
 	}
 
 
@@ -205,25 +207,52 @@ public class GameManager : MonoBehaviour {
         return startPos;
 
     }
-    void CheckWin(){
 
-        if (flagsCount == MinesQuantity)
-        {
+	void CheckWin(){
+
+		if (flagsCount == MinesQuantity)
+		{
 
 
-            Debug.Log("Win");
+			Debug.Log("Win");
 
 			PlayerPrefs.SetInt("LastScene",SceneManager.GetActiveScene().buildIndex+1);
 
-			PlayerPrefs.SetString("HighScoreIn"+SceneManager.GetActiveScene().buildIndex,_runningTime.ToString("F1"));
-            GameWinUI.SetActive(true);
 
 
 
-        }
 
-    }
+			_pauseCounting=true;
 
+			Invoke("GameWin",1f);
+
+
+			float lastHighScore=int.Parse(PlayerPrefs.GetString("HighScoreIn"+SceneManager.GetActiveScene().buildIndex,0.ToString()));
+			if(lastHighScore==0 ){
+
+				PlayerPrefs.SetString("HighScoreIn"+SceneManager.GetActiveScene().buildIndex,_runningTime.ToString("F1"));
+
+			}else if(lastHighScore>_runningTime){
+
+				PlayerPrefs.SetString("HighScoreIn"+SceneManager.GetActiveScene().buildIndex,_runningTime.ToString("F1"));
+			}
+		}
+
+	}
+
+
+	void GameWin(){
+
+
+		GameWinUI.SetActive(true);
+		Time.timeScale=0f;
+	}
+
+	void GameOverUIShow(){
+
+		GameOverUI.SetActive(true);
+		Time.timeScale=0f;
+	}
 
     public void FlagOne(){
 
@@ -251,19 +280,18 @@ public class GameManager : MonoBehaviour {
 
 
 
+
+
     public void GameOver(){
 
         //show ui
 		Invoke("GameOverUIShow",1f);
         
-
+		_pauseCounting=true;
 
     }
 
-	void GameOverUIShow(){
 
-		GameOverUI.SetActive(true);
-	}
 
     public void Restart(){
         
