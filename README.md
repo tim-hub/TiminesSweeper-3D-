@@ -24,6 +24,7 @@ A 3d mines sweeper game.
 Contact me, we achieved / fix it together.
 
 ###Licenses
+- The whole project are all Copy Left without the after files, under Eclipse Public License.
 - flag.png is from [ooopic](http://www.ooopic.com/) and it is free to use.
 - skybox is from Escape Velocity from assest store, it is free to use.
 - menu scene is altered from [Game Jam Menu Template](https://www.assetstore.unity3d.com/en/#!/content/40465), free to use
@@ -32,4 +33,4 @@ Contact me, we achieved / fix it together.
 - the explosion audio is from [8bisound](https://www.assetstore.unity3d.com/en/#!/content/3766), it is free to use too.
 - audio music_backgroun is from assest store, space shooter, it is free tu use too
 - click2.mp3 is under Attribution 3.0 license
-- 1~6 texture and the whole project are all Copy Left, under Eclipse Public License.
+- Facebook sdk is belong to Facebook, files in it are hereby granted a non-exclusive, worldwide, royalty-free license to use.
