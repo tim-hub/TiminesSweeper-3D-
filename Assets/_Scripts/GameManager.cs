@@ -288,24 +288,7 @@ public class GameManager : MonoBehaviour {
 
 
 
-    public void Restart(){
-        
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
-    }
-
-    public void Exit(){
-
-		SceneManager.LoadScene(0);
 
 
 
-    }
-
-    public void LoadNextLevel(){
-       
-
-
-        SceneManager.LoadScene(NextLevel);
-    }
 }

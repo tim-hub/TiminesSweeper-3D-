@@ -53,22 +53,6 @@ public class SceneControl : MonoBehaviour {
 	}
 
 
-
-
-//	public void LoadScene(int i){
-//
-//		LoadScene(SceneManager.GetSceneAt(i).name);
-//	}
-//
-//	public void LoadScene(int i, float waitingTime){
-//
-//		LoadScene(SceneManager.GetSceneAt(i).name,waitingTime);
-//	}
-
-
-
-
-
 	public void LoadScene(){
 
 		LoadScene(NextScene);
@@ -82,12 +66,47 @@ public class SceneControl : MonoBehaviour {
 
 	public void LoadScene(string nextScene, float waitingTime){
 
-
-		StartCoroutine(LoadAsync(nextScene));
 		StartCoroutine(StartLoading(waitingTime));
+		StartCoroutine(LoadAsync(nextScene));
+
 	}
 
+	public void Restart(){
 
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+	}
+
+	public void Quit()
+	{
+		//If we are running in a standalone build of the game
+
+		//Quit the application
+		Application.Quit();
+
+
+		//If we are running in the editor
+		#if UNITY_EDITOR
+		//Stop playing the scene
+		UnityEditor.EditorApplication.isPlaying = false;
+		#endif
+
+
+
+	}
+
+	public void Exit(){
+
+		if(SceneManager.GetActiveScene().buildIndex==0){
+			Quit();
+
+		}else{
+
+			//SceneManager.LoadScene(0);
+			LoadScene("0Menu");
+			//Destroy(this.gameObject);//because ui is do not destroy auto
+		}
+	}
 
 
 
