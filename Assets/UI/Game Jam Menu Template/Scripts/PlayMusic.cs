@@ -38,7 +38,7 @@ public class PlayMusic : MonoBehaviour {
 				musicSource.clip = mainMusic;
 				break;
 		}
-		//Fade up the volume very quickly, over resetTime seconds (.01 by default)
+//		//Fade up the volume very quickly, over resetTime seconds (.01 by default)
 		FadeUp (resetTime);
 		//Play the assigned music clip in musicSource
 		musicSource.Play ();

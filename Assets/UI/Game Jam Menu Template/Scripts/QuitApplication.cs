@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 public class QuitApplication : MonoBehaviour {
 
+
+	public SceneControl SceneCtrl;
+
 	void Quit()
 	{
 		//If we are running in a standalone build of the game
@@ -28,8 +31,9 @@ public class QuitApplication : MonoBehaviour {
 
 		}else{
 
-			SceneManager.LoadScene(0);
-			Destroy(this.gameObject);//because ui is do not destroy auto
+			//SceneManager.LoadScene(0);
+			SceneCtrl.LoadScene("0Menu");
+			//Destroy(this.gameObject);//because ui is do not destroy auto
 		}
 	}
 }

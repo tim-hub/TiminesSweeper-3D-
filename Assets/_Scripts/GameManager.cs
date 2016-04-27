@@ -216,18 +216,14 @@ public class GameManager : MonoBehaviour {
 
 			Debug.Log("Win");
 
-			PlayerPrefs.SetInt("LastScene",SceneManager.GetActiveScene().buildIndex+1);
-
-
-
-
+			PlayerPrefs.SetString("LastScene",SceneManager.GetActiveScene().name);
 
 			_pauseCounting=true;
 
 			Invoke("GameWin",1f);
 
 
-			float lastHighScore=int.Parse(PlayerPrefs.GetString("HighScoreIn"+SceneManager.GetActiveScene().buildIndex,0.ToString()));
+			float lastHighScore=float.Parse(PlayerPrefs.GetString("HighScoreIn"+SceneManager.GetActiveScene().buildIndex,0.ToString("F1")));
 			if(lastHighScore==0 ){
 
 				PlayerPrefs.SetString("HighScoreIn"+SceneManager.GetActiveScene().buildIndex,_runningTime.ToString("F1"));
@@ -237,7 +233,6 @@ public class GameManager : MonoBehaviour {
 				PlayerPrefs.SetString("HighScoreIn"+SceneManager.GetActiveScene().buildIndex,_runningTime.ToString("F1"));
 			}
 		}
-
 	}
 
 

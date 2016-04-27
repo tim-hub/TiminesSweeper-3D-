@@ -5,14 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class Resume : MonoBehaviour {
 
-	public StartOptions StartOptionComponent;
+	public SceneControl SceneCtrl;
 
 	public void ResumeGame(){
 
-		int scene=PlayerPrefs.GetInt("LastScene",StartOptionComponent.sceneToStart);// set the int value when you win in a level
 
-		StartOptionComponent.sceneToStart=scene;
 
-		StartOptionComponent.StartButtonClicked();
+
+		string sceneName=PlayerPrefs.GetString("LastScene", SceneCtrl.NextScene);
+
+
+		SceneCtrl.LoadScene(sceneName);
 	}
 }
