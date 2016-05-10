@@ -423,7 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68986652fe70ba4090f3229ee230354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextLevel: Level0
+  NextLevel: Level1
   MinesText: {fileID: 470095837}
   FlagsText: {fileID: 670225402}
   TimingText: {fileID: 717593025}

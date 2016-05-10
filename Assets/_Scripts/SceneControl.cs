@@ -6,6 +6,7 @@ public class SceneControl : MonoBehaviour {
 
 	//public static SceneControl instance=null;
 	public CameraFade FadeCtrl;
+	[Tooltip("string")]
 	public string NextScene;
 	[Tooltip("Same As Fade Time")]
 	public float LoadingTime;

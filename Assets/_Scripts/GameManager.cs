@@ -67,6 +67,16 @@ public class GameManager : MonoBehaviour {
         GameOverUI.SetActive(false);
         GameWinUI.SetActive(false);
 
+
+		if(SceneManager.GetActiveScene().name=="LevelCustom"){
+
+
+			ElementsQuantity=PlayerPrefs.GetInt("ElementsQuantity",125);
+			MinesQuantity=PlayerPrefs.GetInt("MinesQuantity",32);
+		}
+
+
+
         SetPositionMatrix();
        
 
@@ -285,7 +295,6 @@ public class GameManager : MonoBehaviour {
 		_pauseCounting=true;
 
     }
-
 
 
 

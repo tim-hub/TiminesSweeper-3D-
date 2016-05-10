@@ -20,6 +20,9 @@ public class CustomLevelInput : MonoBehaviour {
 
 		ElementsInput.text=PlayerPrefs.GetInt("ElementsQuantity",27).ToString();
 
+		PlayerPrefs.SetInt("MinesQuantity",5);
+		PlayerPrefs.SetInt("ElementsQuantity",27);
+
 	}
 
 	int GetAccurateNumber(int i){
