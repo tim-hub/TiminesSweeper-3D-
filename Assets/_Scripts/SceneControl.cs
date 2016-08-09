@@ -50,7 +50,7 @@ public class SceneControl : MonoBehaviour {
 
 		Debug.Log("load done");
 		#endif
-
+        yield return loadAsync.isDone;
 	}
 
 
