@@ -19,11 +19,11 @@ A 3d mines sweeper game.
 8. q e to scale
 
 
+## P.S.
+This is runing on an old version of Unity3d (5.4), it might not work well no new version (2018 or 2019).
 
 
-Contact me, we achieved / fix it together.
-
-###Licenses
+### Credits
 - The whole project are all Copy Left without the after files, under Eclipse Public License.
 - flag.png is from [ooopic](http://www.ooopic.com/) and it is free to use.
 - skybox is from Escape Velocity from assest store, it is free to use.
